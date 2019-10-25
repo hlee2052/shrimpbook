@@ -10,7 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,9 +37,17 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     private String tankSizeResult;
     private String pHResult;
     private String GHResult;
-    private String KHREsult;
+    private String KHResult;
 
+    List<String> spinnerTypeList;
+    List<String> spinnerSoilList;
+    List<String> spinnerTankSizeList;
 
+    EditText pHEditText;
+    EditText GHEditText;
+    EditText KHEditText;
+
+    Button submitButton;
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -49,8 +65,15 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        submitButton = getView().findViewById(R.id.uploadInfo);
+        submitButton.setOnClickListener(this);
+        pHEditText =  getView().findViewById(R.id.pH_input);
+        GHEditText =   getView().findViewById(R.id.GH_input);
+        KHEditText =  getView().findViewById(R.id.KH_input);
+
+
         // Spinner for shrimp Type
-        final List<String> spinnerTypeList = new ArrayList<String>();
+        spinnerTypeList = new ArrayList<String>();
         Spinner spinnerType = (Spinner) view.findViewById(R.id.type_spinner);
         spinnerTypeList.add("Caridinia");
         spinnerTypeList.add("Neocaridinia");
@@ -62,7 +85,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         spinnerType.setOnItemSelectedListener(this);
 
         // Spinner for soil type
-        final List<String> spinnerSoilList = new ArrayList<String>();
+        spinnerSoilList = new ArrayList<String>();
         Spinner spinnerSoil = (Spinner) view.findViewById(R.id.soil_spinner);
         spinnerSoilList.add("Gravel(Inert)");
         spinnerSoilList.add("Aquasoil(acidic)");
@@ -75,7 +98,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         spinnerSoil.setOnItemSelectedListener(this);
 
         // Spinner for tank size
-        final List<String> spinnerTankSizeList = new ArrayList<String>();
+        spinnerTankSizeList = new ArrayList<String>();
         Spinner spinnerTankSize = (Spinner) view.findViewById(R.id.tankSize_spinner);
         spinnerTankSizeList.add("< 5 gallons");
         spinnerTankSizeList.add("10 gallons");
@@ -95,6 +118,36 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == R.id.uploadInfo) {
+            ParseUser.getCurrentUser();
+
+
+            pHResult = pHEditText.getText().toString();
+            GHResult = GHEditText.getText().toString();
+            KHResult = KHEditText.getText().toString();
+
+            ParseObject object = new ParseObject("entries");
+
+            object.put("shrimpType", typeResult);
+            object.put("tankSize", tankSizeResult);
+            object.put("soilType", soilResult);
+            object.put("pH", pHResult);
+            object.put("GH", GHResult);
+            object.put("KH", KHResult);
+
+            object.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e==null) {
+                        Toast.makeText(getActivity(), "Load Success!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getActivity(), "Failed to Upload", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
 
     }
 
@@ -104,22 +157,20 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
         switch (adapterView.getId()) {
             case R.id.type_spinner:
-                Log.i("type selected ", Integer.toString(i));
+                //Log.i("type selected ", Integer.toString(i));
+                typeResult = spinnerTypeList.get(i);
                 break;
             case R.id.soil_spinner:
-                Log.i("soil selected ", Integer.toString(i));
+                //Log.i("soil selected ", Integer.toString(i));
+                soilResult = spinnerSoilList.get(i);
                 break;
             case R.id.tankSize_spinner:
-                Log.i("size selected ", Integer.toString(i));
+                //Log.i("size selected ", Integer.toString(i));
+                tankSizeResult = spinnerTankSizeList.get(i);
                 break;
             default:
                 break;
         }
-
-
-
-
-
     }
 
     @Override
