@@ -92,11 +92,16 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_upload:
                             selectedFragment = new UploadFragment();
                             break;
-                        case R.id.nav_account:
+                        /*case R.id.nav_account:
                             selectedFragment = new AccountFragment();
-                            break;
+                            break;*/
                         case R.id.nav_login:
-                            selectedFragment = new LoginFragment();
+                            if (ParseUser.getCurrentUser() != null) {
+                                selectedFragment = new AccountFragment();
+                            } else {
+                                selectedFragment = new LoginFragment();
+                            }
+
                             break;
                         default:
                             selectedFragment = new HomeFragment();
