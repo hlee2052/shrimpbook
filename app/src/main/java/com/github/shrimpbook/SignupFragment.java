@@ -76,7 +76,11 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
                     } else {
                         Log.i("Sign Up", "Success");
                         Toast.makeText(getActivity(),"Welcome!", Toast.LENGTH_SHORT).show();
-                        moveToAnotherFragment(new HomeFragment());
+
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
+
                     }
                 }
             });
@@ -96,14 +100,14 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
         getActivity().setTitle("I am sign up");
 
     }
-    private void moveToAnotherFragment(Fragment fragment) {
+/*    private void moveToAnotherFragment(Fragment fragment) {
         //Fragment fragment = new SignupFragment();
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+    }*/
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

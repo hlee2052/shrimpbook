@@ -34,7 +34,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     EditText passwordInput;
 
     // move to another fragment
-    private void moveToAnotherFragment(Fragment fragment) {
+/*    private void moveToAnotherFragment(Fragment fragment) {
 
         //Fragment fragment = new SignupFragment();
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -42,7 +42,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+    }*/
 
 
 
@@ -55,7 +55,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
                 public void done(ParseUser user, ParseException e) {
                     if (user != null && e == null) {
                         Log.i("LogInStatus", "Logged In");
-                        moveToAnotherFragment(new HomeFragment());
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
                     } else {
                         Toast.makeText(getActivity(), failedLoginText, Toast.LENGTH_SHORT).show();
                     }
@@ -65,8 +67,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
 
 
         if (view.getId() == R.id.signUpButton) {
-
-            moveToAnotherFragment(new SignupFragment());
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            Utility.moveToAnotherFragment(new SignupFragment(), fragmentManager);
+            //moveToAnotherFragment(new SignupFragment());
            /* // Go to SignUp Fragment
             Fragment fragment = new SignupFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

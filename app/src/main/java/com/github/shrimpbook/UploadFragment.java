@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -161,7 +162,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             object.put("userID", userObjectId);
             object.put("useName", username);
 
-            if (byteArray.length >0) {
+            if (byteArray!= null && byteArray.length >0) {
                 ParseFile file = new ParseFile("image.png", byteArray);
                 object.put("image", file);
             }
@@ -170,7 +171,11 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
                 @Override
                 public void done(ParseException e) {
                     if (e==null) {
-                        Toast.makeText(getActivity(), "Load Success!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Load Success!", Toast.LENGTH_LONG).show();
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
+
 
                     } else {
                         Toast.makeText(getActivity(), "Failed to Upload", Toast.LENGTH_SHORT).show();
