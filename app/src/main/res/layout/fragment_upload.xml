@@ -138,6 +138,26 @@
             />
 
 
+        <!--Picture upload button-->
+        <Button android:id="@+id/picture_upload_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Add a photo"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/photoDirectory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="your photo name..."
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            />
+
+
 
 
 
