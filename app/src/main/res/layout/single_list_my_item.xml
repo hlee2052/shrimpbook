@@ -225,5 +225,30 @@
         app:layout_constraintStart_toEndOf="@+id/KHTXT"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
 
+    <Button
+        android:id="@+id/deleteItem"
+        android:layout_width="91dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="60dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemObjectId"
+        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+
+    <TextView
+        android:id="@+id/itemObjectId"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/deleteItem"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+
 
 </android.support.constraint.ConstraintLayout>

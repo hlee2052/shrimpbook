@@ -9,12 +9,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.shrimpbook.items.ViewItem;
 import com.parse.GetDataCallback;
@@ -57,7 +60,7 @@ public class ListAdapter extends BaseAdapter {
     // Tutorial from : http://www.sanktips.com/2017/10/12/android-custom-listview-with-image-and-text-example/
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final ViewHolder viewHolder;
 
         final View result;
@@ -76,6 +79,7 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.GHTextView = (TextView) convertView.findViewById(R.id.GHHome);
             viewHolder.KHTextView = (TextView) convertView.findViewById(R.id.KHHome);
             viewHolder.shrimpImageView = (ImageView) convertView.findViewById(R.id.singleItemImage);
+            viewHolder.viewObjectId = (TextView) convertView.findViewById(R.id.itemObjectId);
 
             result = convertView;
 
@@ -87,12 +91,24 @@ public class ListAdapter extends BaseAdapter {
             result=convertView;
         }
 
+        // https://stackoverflow.com/questions/12596199/android-how-to-set-onclick-event-for-button-in-list-item-of-listview
+        Button buttonDelete = (Button) convertView.findViewById(R.id.deleteItem);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("tagggg", viewItems.get(position).getViewObjectId());
+            }
+        });
+
+
+
         viewHolder.shrimpTypeTextView.setText(viewItems.get(position).getShrimpType());
         viewHolder.soilTypeTextView.setText(viewItems.get(position).getSoilType());
         viewHolder.tankSizeTextView.setText(viewItems.get(position).getTankSize());
         viewHolder.GHTextView.setText(viewItems.get(position).getGH());
         viewHolder.KHTextView.setText(viewItems.get(position).getKH());
         viewHolder.pHTextView.setText(viewItems.get(position).getpH());
+        viewHolder.viewObjectId.setText((viewItems.get(position).getViewObjectId()));
 
         // For getting image
         ParseFile file = viewItems.get(position).getFile();
@@ -106,6 +122,8 @@ public class ListAdapter extends BaseAdapter {
                     }
                 }
             });
+        } else {
+            viewHolder.shrimpImageView.setImageResource(R.drawable.ic_desktop_windows_black_24dp);
         }
 
         return convertView;
@@ -121,6 +139,8 @@ public class ListAdapter extends BaseAdapter {
         TextView KHTextView;
 
         ImageView shrimpImageView;
+
+        TextView viewObjectId;
 
     }
 }

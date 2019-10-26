@@ -19,6 +19,8 @@ public class ViewItem {
     private String GH;
     private String KH;
 
+    private String viewObjectId;
+
 
     public ViewItem (ParseObject object) {
         this.file = (ParseFile) object.get("image");
@@ -30,6 +32,11 @@ public class ViewItem {
 
         this.GH = (String) object.get("GH");
         this.KH = (String) object.get("KH");
+        this.viewObjectId = (String) object.getObjectId();
+    }
+
+    public String getViewObjectId () {
+        return viewObjectId;
     }
 
 
