@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/singleItemImage"
+        android:layout_width="288dp"
+        android:layout_height="129dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="49dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_desktop_windows_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--shrimp type-->
+    <TextView
+        android:id="@+id/shrimpTypeTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/singleItemImage"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:maxLines="1"
+        android:text="Type:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
+
+
+    <TextView
+        android:id="@+id/shrimpTypeHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/shrimpTypeTXT"
+        android:layout_alignBottom="@+id/shrimpTypeTXT"
+        android:layout_alignLeft="@+id/singleItemImage"
+        android:layout_alignStart="@+id/singleItemImage"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:maxLines="1"
+        android:text="shrimp Type"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/shrimpTypeTXT"
+        app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
+
+
+
+    <!--soil type-->
+    <TextView
+        android:id="@+id/soilTypeTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/shrimpTypeHome"
+        android:layout_alignBottom="@+id/shrimpTypeHome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:maxLines="1"
+        android:text="Substrate:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shrimpTypeTXT" />
+
+
+    <TextView
+        android:id="@+id/soilTypeHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/soilTypeTXT"
+        android:layout_alignBottom="@+id/soilTypeTXT"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_toEndOf="@+id/soilTypeTXT"
+        android:layout_toRightOf="@+id/soilTypeTXT"
+        android:maxLines="1"
+        android:text="soil type"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/soilTypeTXT"
+        app:layout_constraintTop_toBottomOf="@+id/shrimpTypeHome" />
+
+
+
+    <!--aquarium size-->
+    <TextView
+        android:id="@+id/tamlSizeTXT"
+        android:layout_width="71dp"
+        android:layout_height="19dp"
+        android:layout_alignBaseline="@+id/pHHome"
+        android:layout_alignBottom="@+id/pHHome"
+        android:layout_alignLeft="@+id/soilTypeTXT"
+        android:layout_alignStart="@+id/soilTypeTXT"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
+        android:maxLines="1"
+        android:text="Tank Size:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/shrimpTypeHome"
+        app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
+
+
+    <TextView
+        android:id="@+id/tankSizeHome"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/soilTypeHome"
+        android:layout_alignRight="@+id/soilTypeHome"
+        android:layout_below="@+id/soilTypeHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:maxLines="1"
+        android:text="tank type"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/tamlSizeTXT"
+        app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
+
+
+    <!--pH type-->
+    <TextView
+        android:id="@+id/pHTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/KHTXT"
+        android:layout_alignStart="@+id/KHTXT"
+        android:layout_below="@+id/tankSizeHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="pH:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/KHHome"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
+
+
+    <TextView
+        android:id="@+id/pHHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pHTxt"
+        android:layout_alignBottom="@+id/pHTxt"
+        android:layout_alignLeft="@+id/GHHome"
+        android:layout_alignStart="@+id/GHHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="ph"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/pHTxt"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
+
+    <!--GH value-->
+    <TextView
+        android:id="@+id/GHTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/KHTXT"
+        android:layout_alignStart="@+id/KHTXT"
+        android:layout_below="@+id/KHTXT"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="GH (hardness):"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeTXT" />
+
+
+    <TextView
+        android:id="@+id/GHHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/GHTXT"
+        android:layout_alignBottom="@+id/GHTXT"
+        android:layout_alignEnd="@+id/shrimpTypeHome"
+        android:layout_alignRight="@+id/shrimpTypeHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="GH"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/GHTXT"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
+
+    <!--KH value-->
+    <TextView
+        android:id="@+id/KHTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/shrimpTypeHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="KH (carbonate):"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/GHHome"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
+
+
+    <TextView
+        android:id="@+id/KHHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/KHTXT"
+        android:layout_alignBottom="@+id/KHTXT"
+        android:layout_alignEnd="@+id/GHHome"
+        android:layout_alignRight="@+id/GHHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="KH"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/KHTXT"
+        app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
+
+
+</android.support.constraint.ConstraintLayout>

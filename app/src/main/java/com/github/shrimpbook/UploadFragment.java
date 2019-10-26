@@ -146,6 +146,10 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String userObjectId = ParseUser.getCurrentUser().getObjectId();
             String username = ParseUser.getCurrentUser().getUsername();
 
+            if (userObjectId==null || userObjectId=="") {
+                userObjectId  = "tmpTEST";
+                username = "tmpUserName;";
+            }
 
             String pHResult = pHEditText.getText().toString();
             String GHResult = GHEditText.getText().toString();
@@ -204,11 +208,10 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri imageData = data.getData();
-
-        photoDirectory.setText(imageData.getPath());
-
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            Uri imageData = data.getData();
+
+            photoDirectory.setText(imageData.getPath());
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageData);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
