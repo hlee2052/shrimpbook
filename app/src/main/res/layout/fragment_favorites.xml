@@ -25,6 +25,17 @@
         android:text="Button"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="25dp" />
+
+    <TextView
+        android:id="@+id/favoritesInfo"
+        android:layout_width="275dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="132dp"
+        android:text="test"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!--android:layout_alignParentStart="true"-->
 
 

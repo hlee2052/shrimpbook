@@ -15,6 +15,12 @@ public class Utility {
     public static final String FAVORITES_FRAGMENT = "favoritesFragment";
 
 
+    public static final String BEGIN_BY_UPLOAD = "You haven't uploaded any items. Begin by uploading from Upload Screen";
+    public static final String BEGIN_BY_ADD_FAV = "You don't have any favorite items, Begin by add them from Home screen";
+
+    public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
+
+
     public static void moveToAnotherFragment(Fragment fragment, FragmentManager fragmentManager) {
 
         //Fragment fragment = new SignupFragment();

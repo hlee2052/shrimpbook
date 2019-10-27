@@ -20,6 +20,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     ListView lView;
     ListAdapter lAdapter;
     Button logOutButton;
+
+    TextView accountInfo;
 
 
     @Nullable
@@ -102,6 +106,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 }
                 lAdapter = new ListAdapter(getActivity(), listItems, Utility.ACCOUNT_FRAGMENT);
                 lView.setAdapter(lAdapter);
+                accountInfo = (TextView)getView().findViewById(R.id.accountInfo);
+
+                if (listItems.size() ==0) {
+
+                    accountInfo.setVisibility(View.VISIBLE);
+                    accountInfo.setText(Utility.BEGIN_BY_UPLOAD);
+                } else {
+                    accountInfo.setVisibility(View.GONE);
+                }
             }
         });
     }

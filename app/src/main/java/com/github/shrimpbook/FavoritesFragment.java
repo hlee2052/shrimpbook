@@ -36,6 +36,8 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
     ListAdapter lAdapter;
     Button logOutButton;
 
+    TextView favoritesInfo;
+
 
     @Nullable
     @Override
@@ -124,6 +126,21 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
                             }
                             lAdapter = new ListAdapter(getActivity(), listItems, Utility.FAVORITES_FRAGMENT);
                             lView.setAdapter(lAdapter);
+                            favoritesInfo = (TextView)getView().findViewById(R.id.favoritesInfo);
+                            if (listItems.size() ==0) {
+
+                                favoritesInfo.setVisibility(View.VISIBLE);
+                                if (ParseUser.getCurrentUser() != null) {
+                                    favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
+
+                                } else {
+                                    favoritesInfo.setText(Utility.LOG_IN_TO_FAV);
+                                }
+
+
+                            } else {
+                                favoritesInfo.setVisibility(View.GONE);
+                            }
                         }
                     });
                 }
