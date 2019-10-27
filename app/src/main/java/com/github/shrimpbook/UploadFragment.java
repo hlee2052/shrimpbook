@@ -54,16 +54,16 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     private String soilResult;
     private String tankSizeResult;
 
-    List<String> spinnerTypeList;
-    List<String> spinnerSoilList;
-    List<String> spinnerTankSizeList;
+    private List<String> spinnerTypeList;
+    private List<String> spinnerSoilList;
+    private List<String> spinnerTankSizeList;
 
-    EditText pHEditText;
-    EditText GHEditText;
-    EditText KHEditText;
+    private EditText pHEditText;
+    private EditText GHEditText;
+    private EditText KHEditText;
 
-    Button submitButton;
-    Button pictureUploadButton;
+    private Button submitButton;
+    private Button pictureUploadButton;
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {

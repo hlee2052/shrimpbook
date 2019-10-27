@@ -75,6 +75,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+//
 
 
                 TextView test = getView().findViewById(R.id.shrimpTypeHome);

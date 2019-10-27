@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.shrimpbook.items.ViewItem;
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.List;
 
@@ -95,10 +102,45 @@ public class ListAdapter extends BaseAdapter {
         Button buttonDelete = (Button) convertView.findViewById(R.id.deleteItem);
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Log.i("tagggg", viewItems.get(position).getViewObjectId());
+            public void onClick(final View view) {
+
+                // Now that we have id to delete available, delete it from Parse server
+
+                String objectIdToDelete = viewItems.get(position).getViewObjectId();
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+
+                // may want to check if object to delete also belongs to current user for extra security
+                query.getInBackground(objectIdToDelete, new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+
+                        try {
+                            object.delete();
+                            object.saveInBackground();
+
+
+
+                            FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
+                            Utility.moveToAnotherFragment(new AccountFragment(), fragmentManager);
+
+                            Toast.makeText(context, "The item has been deleted", Toast.LENGTH_SHORT).show();
+
+
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+
+
+
+
+                    }
+                });
+
+                Log.i("tagggg", objectIdToDelete);
             }
+
         });
+
 
 
 
@@ -128,6 +170,12 @@ public class ListAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    private void deleteEntryFromDB(String objectId) {
+
+    }
+
+
 
     private static class ViewHolder {
 
