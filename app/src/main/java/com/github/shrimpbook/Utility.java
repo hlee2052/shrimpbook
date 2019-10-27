@@ -11,6 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 public class Utility {
     //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
+    public static final String ACCOUNT_FRAGMENT = "accountFragment";
+    public static final String FAVORITES_FRAGMENT = "favoritesFragment";
+
+
     public static void moveToAnotherFragment(Fragment fragment, FragmentManager fragmentManager) {
 
         //Fragment fragment = new SignupFragment();

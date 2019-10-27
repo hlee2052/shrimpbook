@@ -3,7 +3,7 @@ package com.github.shrimpbook;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +33,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     List<ViewItem> listItems;
     ListView lView;
     ListAdapter lAdapter;
-    Button button;
+    Button logOutButton;
 
 
     @Nullable
@@ -44,26 +44,25 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
 
 
+    @Override
+    public void onClick(View view) {
+        // log Out
+        if (view.getId() == R.id.logOutButton) {
+            ParseUser.logOut();
+            Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
 
-
-
-
-
-
-
-
-
-
+        }
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
 
-        button = getView().findViewById(R.id.logOutButton);
-        button.setOnClickListener(this);
-
-
+        logOutButton = getView().findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(this);
 
 
 
@@ -101,14 +100,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     }
 
                 }
-                lAdapter = new ListAdapter(getActivity(), listItems);
+                lAdapter = new ListAdapter(getActivity(), listItems, Utility.ACCOUNT_FRAGMENT);
                 lView.setAdapter(lAdapter);
             }
         });
     }
 
-    @Override
-    public void onClick(View view) {
 
-    }
 }
