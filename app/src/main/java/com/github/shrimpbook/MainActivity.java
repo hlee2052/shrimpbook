@@ -90,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new FavoritesFragment();
                             break;
                         case R.id.nav_upload:
-                            selectedFragment = new UploadFragment();
+                            if (ParseUser.getCurrentUser().getUsername() != null) {
+                                selectedFragment = new UploadFragment();
+
+                            } else {
+                                selectedFragment = new UploadFragmentEmpty();
+                            }
                             break;
                         /*case R.id.nav_account:
                             selectedFragment = new AccountFragment();

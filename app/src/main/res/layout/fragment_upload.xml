@@ -6,33 +6,26 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView android:id="@+id/UploadTitle"
+
+        <TextView
+            android:id="@+id/UploadTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:text="ScrollView"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
-
-
-
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:text="Button One" />
+            android:layout_marginTop="35dp"
+            android:text="Submit your tank"
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
 
-
-       <!-- Type spinner-->
+        <!-- Type spinner-->
         <TextView android:id="@+id/shrimpType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Shrimp Type"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
 
         <Spinner
@@ -50,7 +43,7 @@
             android:layout_marginTop="30dp"
             android:text="Tank Size"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
 
         <Spinner
@@ -68,7 +61,7 @@
             android:layout_marginTop="30dp"
             android:text="Soil Type"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
 
         <Spinner
@@ -86,7 +79,7 @@
             android:layout_marginTop="30dp"
             android:text="pH"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
         <EditText
             android:id="@+id/pH_input"
@@ -105,7 +98,7 @@
             android:layout_marginTop="30dp"
             android:text="GH (General Hardness)"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
         <EditText
             android:id="@+id/GH_input"
@@ -125,7 +118,7 @@
             android:layout_marginTop="30dp"
             android:text="KH (Carbonate Hardness)"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
         <EditText
             android:id="@+id/KH_input"
@@ -145,7 +138,7 @@
             android:layout_marginTop="30dp"
             android:text="Add a photo"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:textStyle=""
             android:layout_gravity="center"/>
         <TextView
             android:id="@+id/photoDirectory"
