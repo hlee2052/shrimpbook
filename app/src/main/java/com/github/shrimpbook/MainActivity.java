@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         ParseObject object = new ParseObject("Meow");
         object.put("test1", "asdf22");
-        object.put("test2", "asdf22");
 
         object.saveInBackground(new SaveCallback() {
             @Override
@@ -54,14 +52,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         ParseUser.enableAutomaticUser();
-
         ParseACL defaultACL = new ParseACL();
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
-
 
         // For bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -73,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     new HomeFragment()).commit();
         }
     }
-
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -97,21 +90,16 @@ public class MainActivity extends AppCompatActivity {
                                 selectedFragment = new UploadFragmentEmpty();
                             }
                             break;
-                        /*case R.id.nav_account:
-                            selectedFragment = new AccountFragment();
-                            break;*/
                         case R.id.nav_login:
-                            if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() !=null) {
+                            if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
                                 selectedFragment = new AccountFragment();
                             } else {
                                 selectedFragment = new LoginFragment();
                             }
-
                             break;
                         default:
                             selectedFragment = new HomeFragment();
                     }
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 

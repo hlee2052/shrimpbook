@@ -40,8 +40,6 @@ import java.util.List;
 
 public class ListAdapter extends BaseAdapter {
 
-
-
     Context context;
     private List<ViewItem> viewItems;
     private String viewTYpe;
@@ -51,13 +49,13 @@ public class ListAdapter extends BaseAdapter {
     private boolean isFavorites;
 
     // default home
-    public ListAdapter(Context context, List<ViewItem> view){
+    public ListAdapter(Context context, List<ViewItem> view) {
         this.context = context;
         this.viewItems = view;
         this.isHome = true;
     }
 
-    public ListAdapter(Context context, List<ViewItem> view, String type){
+    public ListAdapter(Context context, List<ViewItem> view, String type) {
         this.context = context;
         this.viewItems = view;
         this.viewTYpe = type;
@@ -114,13 +112,10 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.viewObjectId = (TextView) convertView.findViewById(R.id.itemObjectId);
 
             result = convertView;
-
             convertView.setTag(viewHolder);
-
-
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
+            result = convertView;
         }
 
         // https://stackoverflow.com/questions/12596199/android-how-to-set-onclick-event-for-button-in-list-item-of-listview
@@ -129,8 +124,8 @@ public class ListAdapter extends BaseAdapter {
             buttonDelete.setVisibility(View.GONE);
         }
 
-        Button favButton = (Button)convertView.findViewById(R.id.favoriteButton);
-        if (!isHome || ParseUser.getCurrentUser()==null || ParseUser.getCurrentUser().getUsername()==null) {
+        Button favButton = (Button) convertView.findViewById(R.id.favoriteButton);
+        if (!isHome || ParseUser.getCurrentUser() == null || ParseUser.getCurrentUser().getUsername() == null) {
             favButton.setVisibility(View.GONE);
         }
 
@@ -146,31 +141,13 @@ public class ListAdapter extends BaseAdapter {
 
                 if (isFavorites) {
                     String favoriteEntryToDelete = viewItems.get(position).getViewObjectId();
-
-                    /*ParseQuery<ParseObject> query1 = ParseQuery.getQuery("favorites");
-                    query1.whereEqualTo("viewId", favoriteEntryToDelete);
-
-                    ParseQuery<ParseObject> query2 = ParseQuery.getQuery("favorites");
-                    query2.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
-
-                    List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
-                    queries.add(query1);
-                    queries.add(query2);
-
-
-
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("favorite");
-                    query = ParseQuery.or(queries);*/
-
-
                     ParseQuery<ParseObject> queryTest = ParseQuery.getQuery("favorites");
                     queryTest.whereEqualTo("viewId", favoriteEntryToDelete).whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
-
 
                     queryTest.findInBackground(new FindCallback<ParseObject>() {
                         @Override
                         public void done(List<ParseObject> objects, ParseException e) {
-                            for (ParseObject each: objects) {
+                            for (ParseObject each : objects) {
                                 try {
                                     each.delete();
                                 } catch (ParseException e1) {
@@ -179,23 +156,11 @@ public class ListAdapter extends BaseAdapter {
                                 each.saveInBackground();
 
                             }
-
-                        FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
-                        Utility.moveToAnotherFragment(new FavoritesFragment(), fragmentManager);
-                        Toast.makeText(context, "Removed from Favorite", Toast.LENGTH_SHORT).show();
-
-
+                            FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+                            Utility.moveToAnotherFragment(new FavoritesFragment(), fragmentManager);
+                            Toast.makeText(context, "Removed from Favorite", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
-
-
-
-
-
-
-
                 } else {
                     ParseObject object = new ParseObject("favorites");
 
@@ -208,9 +173,8 @@ public class ListAdapter extends BaseAdapter {
                     object.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if (e==null) {
+                            if (e == null) {
                                 Toast.makeText(context, "Added to your favorite list", Toast.LENGTH_LONG).show();
-
                             } else {
                                 Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show();
                             }
@@ -221,18 +185,13 @@ public class ListAdapter extends BaseAdapter {
         });
 
 
-
-
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
 
-                // Now that we have id to delete available, delete it from Parse server
-
                 String objectIdToDelete = viewItems.get(position).getViewObjectId();
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
 
-                // may want to check if object to delete also belongs to current user for extra security
                 query.getInBackground(objectIdToDelete, new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject object, ParseException e) {
@@ -241,26 +200,18 @@ public class ListAdapter extends BaseAdapter {
                             object.delete();
                             object.saveInBackground();
 
-
-
-                            FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
+                            FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new AccountFragment(), fragmentManager);
                             Toast.makeText(context, "The item has been deleted", Toast.LENGTH_SHORT).show();
-
 
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }
                     }
                 });
-
-                Log.i("tagggg", objectIdToDelete);
             }
 
         });
-
-
-
 
         viewHolder.shrimpTypeTextView.setText(viewItems.get(position).getShrimpType());
         viewHolder.soilTypeTextView.setText(viewItems.get(position).getSoilType());
@@ -272,11 +223,11 @@ public class ListAdapter extends BaseAdapter {
 
         // For getting image
         ParseFile file = viewItems.get(position).getFile();
-        if (file !=null) {
+        if (file != null) {
             file.getDataInBackground(new GetDataCallback() {
                 @Override
                 public void done(byte[] data, ParseException e) {
-                    if (e==null && data !=null) {
+                    if (e == null && data != null) {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                         viewHolder.shrimpImageView.setImageBitmap(bitmap);
                     }
@@ -285,13 +236,8 @@ public class ListAdapter extends BaseAdapter {
         } else {
             viewHolder.shrimpImageView.setImageResource(R.drawable.ic_desktop_windows_black_24dp);
         }
-
         return convertView;
     }
-
-
-
-
 
     private static class ViewHolder {
 
@@ -301,10 +247,7 @@ public class ListAdapter extends BaseAdapter {
         TextView pHTextView;
         TextView GHTextView;
         TextView KHTextView;
-
         ImageView shrimpImageView;
-
         TextView viewObjectId;
-
     }
 }

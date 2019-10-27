@@ -32,7 +32,6 @@ public class HomeFragment extends Fragment {
     ListView lView;
     ListAdapter lAdapter;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,8 +49,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                // Toast.makeText(getActivity(), version[i]+" "+versionNumber[i], Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -61,7 +58,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    for (ParseObject each: objects) {
+                    for (ParseObject each : objects) {
                         listItems.add(new ViewItem(each));
                     }
 
@@ -71,5 +68,4 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
 }

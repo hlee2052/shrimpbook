@@ -26,12 +26,10 @@ import com.parse.SignUpCallback;
 
 public class SignupFragment extends Fragment implements View.OnClickListener, View.OnKeyListener{
 
-
     Button registerButton;
     EditText usernameInput;
     EditText passwordInput;
     EditText passwordConfirmInput;
-
 
     final String unEqualPasswordText = "Please check two passwords are matched";
     final String passwordTooShortText = "Password must be at least 6 characters long";
@@ -42,7 +40,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
     public void onClick(View view) {
 
         if (view.getId() == R.id.submitRegisterButton) {
-
             ParseUser user = new ParseUser();
             String password = passwordInput.getText().toString();
             String passwordConfirm = passwordConfirmInput.getText().toString();
@@ -66,7 +63,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
 
             user.setUsername(username);
             user.setPassword(password);
-
             user.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -76,8 +72,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
                     } else {
                         Log.i("Sign Up", "Success");
                         Toast.makeText(getActivity(),"Welcome!", Toast.LENGTH_SHORT).show();
-
-
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
 
@@ -92,22 +86,12 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
         return false;
     }
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().setTitle("I am sign up");
 
     }
-/*    private void moveToAnotherFragment(Fragment fragment) {
-        //Fragment fragment = new SignupFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }*/
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -127,6 +111,4 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_signup, container, false);
     }
-
-
 }

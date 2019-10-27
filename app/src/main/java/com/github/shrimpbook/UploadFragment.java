@@ -90,9 +90,9 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
         submitButton = getView().findViewById(R.id.uploadInfo);
         submitButton.setOnClickListener(this);
-        pHEditText =  getView().findViewById(R.id.pH_input);
-        GHEditText =   getView().findViewById(R.id.GH_input);
-        KHEditText =  getView().findViewById(R.id.KH_input);
+        pHEditText = getView().findViewById(R.id.pH_input);
+        GHEditText = getView().findViewById(R.id.GH_input);
+        KHEditText = getView().findViewById(R.id.KH_input);
 
 
         // Spinner for shrimp Type
@@ -146,8 +146,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String userObjectId = ParseUser.getCurrentUser().getObjectId();
             String username = ParseUser.getCurrentUser().getUsername();
 
-            if (userObjectId==null || userObjectId=="") {
-                userObjectId  = "tmpTEST";
+            if (userObjectId == null || userObjectId == "") {
+                userObjectId = "tmpTEST";
                 username = "tmpUserName;";
             }
 
@@ -156,7 +156,6 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String KHResult = KHEditText.getText().toString();
 
             ParseObject object = new ParseObject("entries");
-
             object.put("shrimpType", typeResult);
             object.put("tankSize", tankSizeResult);
             object.put("soilType", soilResult);
@@ -166,7 +165,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             object.put("userID", userObjectId);
             object.put("useName", username);
 
-            if (byteArray!= null && byteArray.length >0) {
+            if (byteArray != null && byteArray.length > 0) {
                 ParseFile file = new ParseFile("image.png", byteArray);
                 object.put("image", file);
             }
@@ -174,19 +173,15 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             object.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
-                    if (e==null) {
+                    if (e == null) {
                         Toast.makeText(getActivity(), "Load Success!", Toast.LENGTH_LONG).show();
-
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
-
-
                     } else {
                         Toast.makeText(getActivity(), "Failed to Upload", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
         }
 
         if (view.getId() == R.id.picture_upload_button) {
@@ -197,7 +192,6 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             }
         }
     }
-
 
     public void getPhotoFromStorage() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

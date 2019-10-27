@@ -29,23 +29,19 @@ import java.util.List;
  */
 
 
-public class FavoritesFragment extends Fragment implements  View.OnClickListener {
+public class FavoritesFragment extends Fragment implements View.OnClickListener {
 
     List<ViewItem> listItems;
     ListView lView;
     ListAdapter lAdapter;
     Button logOutButton;
-
     TextView favoritesInfo;
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -55,7 +51,6 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
             Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
-
         }
     }
 
@@ -63,14 +58,8 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
         logOutButton = getView().findViewById(R.id.test1234);
         logOutButton.setOnClickListener(this);
-
-
-
-
-
         listItems = new ArrayList<>();
         lView = (ListView) getView().findViewById(R.id.favoritesList);
 
@@ -78,66 +67,46 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-//
-
-
                 TextView test = getView().findViewById(R.id.shrimpTypeHome);
-
-
                 String val = test.getText().toString();
-
-
                 Toast.makeText(getActivity(), val, Toast.LENGTH_SHORT).show();
-
             }
         });
 
 
-       final List<String> viewIdList = new ArrayList<>();
-/*
-       final List<String> favObjectId = new ArrayList<>();
-*/
+        final List<String> viewIdList = new ArrayList<>();
 
         ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("favorites");
         userQuery.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
         userQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                if (e== null) {
-                    for (ParseObject each: objects) {
+                if (e == null) {
+                    for (ParseObject each : objects) {
                         viewIdList.add(each.getString("viewId"));
-                        //favObjectId.add(each.getString("objectId"));
                     }
 
-
                     ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
-
                     query.whereContainedIn("objectId", viewIdList);
-
                     query.findInBackground(new FindCallback<ParseObject>() {
                         @Override
                         public void done(List<ParseObject> objects, ParseException e) {
                             if (e == null) {
-                                Log.i("object size", String.valueOf(objects.size()));
-                                for (ParseObject each: objects) {
+                                for (ParseObject each : objects) {
                                     listItems.add(new ViewItem(each));
                                 }
                             }
                             lAdapter = new ListAdapter(getActivity(), listItems, Utility.FAVORITES_FRAGMENT);
                             lView.setAdapter(lAdapter);
-                            favoritesInfo = (TextView)getView().findViewById(R.id.favoritesInfo);
-                            if (listItems.size() ==0) {
+                            favoritesInfo = (TextView) getView().findViewById(R.id.favoritesInfo);
+                            if (listItems.size() == 0) {
 
                                 favoritesInfo.setVisibility(View.VISIBLE);
                                 if (ParseUser.getCurrentUser().getUsername() != null) {
                                     favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
-
                                 } else {
                                     favoritesInfo.setText(Utility.LOG_IN_TO_FAV);
                                 }
-
-
                             } else {
                                 favoritesInfo.setVisibility(View.GONE);
                             }
@@ -146,6 +115,5 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
                 }
             }
         });
-
     }
 }

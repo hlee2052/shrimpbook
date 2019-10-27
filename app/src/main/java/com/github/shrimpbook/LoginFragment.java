@@ -29,21 +29,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     public final String failedLoginText = "Failed to log in, make sure to check";
     Button loginButton;
     Button signUpButton;
-
     EditText usernameInput;
     EditText passwordInput;
-
-    // move to another fragment
-/*    private void moveToAnotherFragment(Fragment fragment) {
-
-        //Fragment fragment = new SignupFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }*/
-
 
 
     @Override
@@ -54,8 +41,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if (user != null && e == null) {
-                        Log.i("LogInStatus", "Logged In");
-
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
                     } else {
@@ -69,16 +54,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
         if (view.getId() == R.id.signUpButton) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new SignupFragment(), fragmentManager);
-            //moveToAnotherFragment(new SignupFragment());
-           /* // Go to SignUp Fragment
-            Fragment fragment = new SignupFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();*/
         }
-
     }
 
     @Override
@@ -91,13 +67,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getActivity().setTitle("User LogIn Detail");
-
-
-
-
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -120,6 +90,4 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
-
-
 }
