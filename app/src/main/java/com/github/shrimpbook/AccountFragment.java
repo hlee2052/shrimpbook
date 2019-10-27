@@ -52,8 +52,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         // log Out
         if (view.getId() == R.id.logOutButton) {
+            Toast.makeText(getActivity(), ParseUser.getCurrentUser().getUsername(), Toast.LENGTH_SHORT).show();
+
             ParseUser.logOut();
-            Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
 

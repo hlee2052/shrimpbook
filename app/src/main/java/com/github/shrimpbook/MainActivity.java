@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new AccountFragment();
                             break;*/
                         case R.id.nav_login:
-                            if (ParseUser.getCurrentUser() != null) {
+                            if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() !=null) {
                                 selectedFragment = new AccountFragment();
                             } else {
                                 selectedFragment = new LoginFragment();

@@ -130,7 +130,7 @@ public class ListAdapter extends BaseAdapter {
         }
 
         Button favButton = (Button)convertView.findViewById(R.id.favoriteButton);
-        if (!isHome || ParseUser.getCurrentUser()==null) {
+        if (!isHome || ParseUser.getCurrentUser()==null || ParseUser.getCurrentUser().getUsername()==null) {
             favButton.setVisibility(View.GONE);
         }
 

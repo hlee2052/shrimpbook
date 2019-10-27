@@ -130,7 +130,7 @@ public class FavoritesFragment extends Fragment implements  View.OnClickListener
                             if (listItems.size() ==0) {
 
                                 favoritesInfo.setVisibility(View.VISIBLE);
-                                if (ParseUser.getCurrentUser() != null) {
+                                if (ParseUser.getCurrentUser().getUsername() != null) {
                                     favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
 
                                 } else {
