@@ -1,171 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="false">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:background="@android:color/holo_blue_bright"
+                app:srcCompat="?android:attr/selectableItemBackground"
+                android:id="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/UploadTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="27dp"
+                android:layout_marginStart="27dp"
+                android:text="Submit your tank"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <!-- Type spinner-->
         <TextView
-            android:id="@+id/UploadTitle"
+            android:id="@+id/shrimpType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:text="Submit your tank"
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-
-        <!-- Type spinner-->
-        <TextView android:id="@+id/shrimpType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
             android:text="Shrimp Type"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
 
         <Spinner
+            android:id="@+id/type_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/type_spinner"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            />
+            android:layout_marginRight="60dp" />
 
         <!--Tank size spinner-->
-        <TextView android:id="@+id/tankSize"
+        <TextView
+            android:id="@+id/tankSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
             android:text="Tank Size"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
 
         <Spinner
+            android:id="@+id/tankSize_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tankSize_spinner"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            />
+            android:layout_marginRight="60dp" />
 
         <!--Soil type spinner -->
-        <TextView android:id="@+id/soilType"
+        <TextView
+            android:id="@+id/soilType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner_green"
+
             android:layout_marginTop="30dp"
             android:text="Soil Type"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
 
         <Spinner
+            android:id="@+id/soil_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/soil_spinner"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            />
+            android:layout_marginRight="60dp" />
 
-         <!--pH input-->
-        <TextView android:id="@+id/pH_Text"
+        <!--pH input-->
+        <TextView
+            android:id="@+id/pH_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
             android:text="pH"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
+
         <EditText
             android:id="@+id/pH_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            />
+            android:ems="10"
+            android:inputType="numberDecimal" />
 
         <!--GH input-->
-        <TextView android:id="@+id/GH_Text"
+        <TextView
+            android:id="@+id/GH_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner_green"
+
             android:layout_marginTop="30dp"
             android:text="GH (General Hardness)"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
+
         <EditText
             android:id="@+id/GH_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            />
+            android:ems="10"
+            android:inputType="numberDecimal" />
 
 
         <!--KH input-->
-        <TextView android:id="@+id/KH_Text"
+        <TextView
+            android:id="@+id/KH_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+
             android:text="KH (Carbonate Hardness)"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
+
         <EditText
             android:id="@+id/KH_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            />
+            android:ems="10"
+            android:inputType="numberDecimal" />
 
-
-        <!--Picture upload button-->
-        <Button android:id="@+id/picture_upload_button"
+        <!--Temp (C) input-->
+        <TextView
+            android:id="@+id/temp_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Add a photo"
+            android:background="@drawable/rounded_corner_green"
+
+            android:text="Temperature(Celcius)"
             android:textSize="25dp"
-            android:textStyle=""
-            android:layout_gravity="center"/>
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/temp_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+
+        <!--TDSinput-->
+        <TextView
+            android:id="@+id/TDS_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+
+            android:text="TDS (Total Dissolved Solids)"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/TDS_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <!--Picture upload button-->
+        <Button
+            android:id="@+id/picture_upload_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+            android:text="Add a photo"
+            android:textSize="15dp"
+            android:textStyle="" />
+
         <TextView
             android:id="@+id/photoDirectory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="your photo name..."
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            />
+            android:ems="10"
+            android:hint="your photo name..."
+            android:textSize="16sp" />
 
-
-
-
-
-
-
-        <Button android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/uploadInfo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
+            android:background="@drawable/rounded_corner"
             android:text="Upload!"
-            android:id="@+id/uploadInfo"
-            />
-
-
-
-
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 </ScrollView>

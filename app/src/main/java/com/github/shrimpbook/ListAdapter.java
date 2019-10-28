@@ -110,6 +110,8 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.KHTextView = (TextView) convertView.findViewById(R.id.KHHome);
             viewHolder.shrimpImageView = (ImageView) convertView.findViewById(R.id.singleItemImage);
             viewHolder.viewObjectId = (TextView) convertView.findViewById(R.id.itemObjectId);
+            viewHolder.tempTextView= (TextView) convertView.findViewById(R.id.tempHome);
+            viewHolder.TDSTextView = (TextView) convertView.findViewById(R.id.TDSHome);
 
             result = convertView;
             convertView.setTag(viewHolder);
@@ -131,7 +133,7 @@ public class ListAdapter extends BaseAdapter {
 
         if (isFavorites) {
             favButton.setVisibility(View.VISIBLE);
-            favButton.setText("Remove Fav");
+            favButton.setText("Remove");
         }
 
         favButton.setOnClickListener(new View.OnClickListener() {
@@ -221,6 +223,9 @@ public class ListAdapter extends BaseAdapter {
         viewHolder.pHTextView.setText(viewItems.get(position).getpH());
         viewHolder.viewObjectId.setText((viewItems.get(position).getViewObjectId()));
 
+        viewHolder.TDSTextView.setText((viewItems.get(position).getTDS()));
+        viewHolder.tempTextView.setText((viewItems.get(position).getTemp()));
+
         // For getting image
         ParseFile file = viewItems.get(position).getFile();
         if (file != null) {
@@ -249,5 +254,7 @@ public class ListAdapter extends BaseAdapter {
         TextView KHTextView;
         ImageView shrimpImageView;
         TextView viewObjectId;
+        TextView TDSTextView;
+        TextView tempTextView;
     }
 }

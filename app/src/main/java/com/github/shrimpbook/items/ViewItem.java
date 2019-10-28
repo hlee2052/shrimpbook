@@ -14,13 +14,13 @@ public class ViewItem {
     private String shrimpType;
     private String tankSize;
     private String soilType;
-
     private String pH;
     private String GH;
     private String KH;
+    private String temp;
+    private String TDS;
 
     private String viewObjectId;
-
 
     public ViewItem (ParseObject object) {
         this.file = (ParseFile) object.get("image");
@@ -33,23 +33,24 @@ public class ViewItem {
         this.GH = (String) object.get("GH");
         this.KH = (String) object.get("KH");
         this.viewObjectId = (String) object.getObjectId();
+
+        this.temp = (String) object.get("temp");
+        this.TDS = (String) object.get("TDS");
     }
 
     public String getViewObjectId () {
         return viewObjectId;
     }
 
-
     public ParseFile getFile() {
         return file;
     }
 
-
-    public String getShrimpType() {
+    public String getShrimpType () {
         return shrimpType;
     }
 
-    public String getTankSize() {
+    public String getTankSize () {
         return tankSize;
     }
 
@@ -61,12 +62,20 @@ public class ViewItem {
         return pH;
     }
 
-    public String getGH() {
+    public String getGH () {
         return GH;
     }
 
-    public String getKH() {
+    public String getKH () {
         return KH;
+    }
+
+    public String getTDS () {
+        return TDS;
+    }
+
+    public String getTemp () {
+        return temp;
     }
 
 }

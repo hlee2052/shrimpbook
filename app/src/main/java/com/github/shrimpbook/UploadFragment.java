@@ -13,6 +13,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -62,6 +64,9 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     private EditText GHEditText;
     private EditText KHEditText;
 
+    private EditText tempText;
+    private EditText TDSText;
+
     private Button submitButton;
     private Button pictureUploadButton;
 
@@ -94,6 +99,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         GHEditText = getView().findViewById(R.id.GH_input);
         KHEditText = getView().findViewById(R.id.KH_input);
 
+        tempText = getView().findViewById(R.id.temp_input);
+        TDSText = getView().findViewById(R.id.TDS_input);
 
         // Spinner for shrimp Type
         spinnerTypeList = new ArrayList<String>();
@@ -135,8 +142,6 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         TankSizeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerTankSize.setAdapter(TankSizeAdapter);
         spinnerTankSize.setOnItemSelectedListener(this);
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -147,13 +152,15 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String username = ParseUser.getCurrentUser().getUsername();
 
             if (userObjectId == null || userObjectId == "") {
-                userObjectId = "tmpTEST";
-                username = "tmpUserName;";
+                userObjectId = "temp id";
+                username = "temp user";
             }
 
             String pHResult = pHEditText.getText().toString();
             String GHResult = GHEditText.getText().toString();
             String KHResult = KHEditText.getText().toString();
+            String tempResult = tempText.getText().toString();
+            String TDSResult = TDSText.getText().toString();
 
             ParseObject object = new ParseObject("entries");
             object.put("shrimpType", typeResult);
@@ -162,6 +169,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             object.put("pH", pHResult);
             object.put("GH", GHResult);
             object.put("KH", KHResult);
+            object.put("temp", tempResult);
+            object.put("TDS", TDSResult);
             object.put("userID", userObjectId);
             object.put("useName", username);
 

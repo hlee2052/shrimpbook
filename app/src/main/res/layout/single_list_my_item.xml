@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/singleItemImage"
-        android:layout_width="288dp"
-        android:layout_height="129dp"
+        android:layout_width="317dp"
+        android:layout_height="164dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -35,6 +35,7 @@
         android:maxLines="1"
         android:text="Type:"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
 
@@ -47,7 +48,7 @@
         android:layout_alignBottom="@+id/shrimpTypeTXT"
         android:layout_alignLeft="@+id/singleItemImage"
         android:layout_alignStart="@+id/singleItemImage"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="36dp"
         android:maxLines="1"
         android:text="shrimp Type"
@@ -70,6 +71,7 @@
         android:maxLines="1"
         android:text="Substrate:"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shrimpTypeTXT" />
 
@@ -95,8 +97,8 @@
     <!--aquarium size-->
     <TextView
         android:id="@+id/tamlSizeTXT"
-        android:layout_width="71dp"
-        android:layout_height="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/pHHome"
         android:layout_alignBottom="@+id/pHHome"
         android:layout_alignLeft="@+id/soilTypeTXT"
@@ -104,8 +106,9 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="36dp"
         android:maxLines="1"
-        android:text="Tank Size:"
+        android:text="Size (gallons)"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/shrimpTypeHome"
         app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
 
@@ -117,7 +120,7 @@
         android:layout_alignEnd="@+id/soilTypeHome"
         android:layout_alignRight="@+id/soilTypeHome"
         android:layout_below="@+id/soilTypeHome"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="36dp"
         android:maxLines="1"
         android:text="tank type"
@@ -134,11 +137,12 @@
         android:layout_alignLeft="@+id/KHTXT"
         android:layout_alignStart="@+id/KHTXT"
         android:layout_below="@+id/tankSizeHome"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:text="pH:"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/KHHome"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
 
@@ -151,7 +155,7 @@
         android:layout_alignBottom="@+id/pHTxt"
         android:layout_alignLeft="@+id/GHHome"
         android:layout_alignStart="@+id/GHHome"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:text="ph"
@@ -163,7 +167,7 @@
     <TextView
         android:id="@+id/GHTXT"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:layout_alignLeft="@+id/KHTXT"
         android:layout_alignStart="@+id/KHTXT"
         android:layout_below="@+id/KHTXT"
@@ -172,6 +176,7 @@
         android:maxLines="1"
         android:text="GH (hardness):"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeTXT" />
 
@@ -184,7 +189,7 @@
         android:layout_alignBottom="@+id/GHTXT"
         android:layout_alignEnd="@+id/shrimpTypeHome"
         android:layout_alignRight="@+id/shrimpTypeHome"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:text="GH"
@@ -205,9 +210,9 @@
         android:maxLines="1"
         android:text="KH (carbonate):"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/GHHome"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
-
 
     <TextView
         android:id="@+id/KHHome"
@@ -217,7 +222,7 @@
         android:layout_alignBottom="@+id/KHTXT"
         android:layout_alignEnd="@+id/GHHome"
         android:layout_alignRight="@+id/GHHome"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:text="KH"
@@ -225,40 +230,93 @@
         app:layout_constraintStart_toEndOf="@+id/KHTXT"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
 
+    <!-- Temp Values-->
+    <TextView
+        android:id="@+id/TempTxT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/shrimpTypeHome"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="Temperature(C):"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+
+
+    <TextView
+        android:id="@+id/tempHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/KHTXT"
+        android:layout_alignBottom="@+id/KHTXT"
+        android:layout_alignEnd="@+id/GHHome"
+        android:layout_alignRight="@+id/GHHome"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="Temp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/TempTxT"
+        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+
+
     <Button
         android:id="@+id/deleteItem"
         android:layout_width="91dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_corner"
         android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/itemObjectId"
-        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="459dp" />
 
     <TextView
         android:id="@+id/itemObjectId"
         android:layout_width="70dp"
         android:layout_height="37dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/deleteItem"
-        app:layout_constraintHorizontal_bias="0.494"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GHTXT" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/favoriteButton"
+        android:layout_width="73dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_corner"
+        android:text="Like"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
+
+    <TextView
+        android:id="@+id/TDSTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Fav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="TDS:"
+        app:layout_constraintStart_toEndOf="@+id/tempHome"
+        app:layout_constraintTop_toBottomOf="@+id/KHTXT" />
+
+    <TextView
+        android:id="@+id/TDSHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="TDSVal"
+        app:layout_constraintStart_toEndOf="@+id/TDSTxt"
+        app:layout_constraintTop_toBottomOf="@+id/KHTXT" />
 
 
 </android.support.constraint.ConstraintLayout>

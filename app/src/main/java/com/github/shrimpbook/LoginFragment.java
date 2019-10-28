@@ -32,7 +32,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     EditText usernameInput;
     EditText passwordInput;
 
-
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.loginButton) {
@@ -49,7 +48,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
                 }
             });
         }
-
 
         if (view.getId() == R.id.signUpButton) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
