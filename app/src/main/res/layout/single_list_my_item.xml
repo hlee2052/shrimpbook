@@ -106,7 +106,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="36dp"
         android:maxLines="1"
-        android:text="Size (gallons)"
+        android:text="Size (gallons):"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/shrimpTypeHome"
@@ -270,11 +270,12 @@
         android:layout_width="91dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_corner"
         android:text="Delete"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="459dp" />
+        app:layout_constraintTop_toBottomOf="@+id/TempTxT" />
 
     <TextView
         android:id="@+id/itemObjectId"
@@ -302,9 +303,10 @@
         android:id="@+id/TDSTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="16dp"
-        android:text="TDS:"
+        android:text="Total Dissolved Solids"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/tempHome"
         app:layout_constraintTop_toBottomOf="@+id/KHTXT" />
 
@@ -312,7 +314,7 @@
         android:id="@+id/TDSHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="16dp"
         android:text="TDSVal"
         app:layout_constraintStart_toEndOf="@+id/TDSTxt"

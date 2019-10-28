@@ -1,5 +1,8 @@
 package com.github.shrimpbook;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.shrimpbook.items.ViewItem;
@@ -31,6 +35,7 @@ public class HomeFragment extends Fragment {
     List<ViewItem> listItems;
     ListView lView;
     ListAdapter lAdapter;
+    TextView noInternetView;
 
     @Nullable
     @Override
@@ -43,29 +48,58 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        listItems = new ArrayList<>();
-        lView = (ListView) getView().findViewById(R.id.androidList);
-        lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            }
-        });
-
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for (ParseObject each : objects) {
-                        listItems.add(new ViewItem(each));
-                    }
+        if (haveNetworkConnection()) {
+            listItems = new ArrayList<>();
+            lView = (ListView) getView().findViewById(R.id.androidList);
+            lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 }
-                lAdapter = new ListAdapter(getActivity(), listItems);
-                lView.setAdapter(lAdapter);
-            }
-        });
+            });
+
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject each : objects) {
+                            listItems.add(new ViewItem(each));
+                        }
+
+                    }
+                    lAdapter = new ListAdapter(getActivity(), listItems);
+                    lView.setAdapter(lAdapter);
+                }
+            });
+        } else {
+            String noInternet = "You need internet connection for the app the work! Try to tap another section after you have internet connection!";
+            noInternetView = getView().findViewById(R.id.homeNoInternet);
+            noInternetView.setVisibility(View.VISIBLE);
+            noInternetView.setText(noInternet);
+        }
+
+
+    }
+
+
+
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
     }
 }

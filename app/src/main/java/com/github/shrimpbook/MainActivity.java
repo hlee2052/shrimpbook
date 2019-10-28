@@ -1,5 +1,8 @@
 package com.github.shrimpbook;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -69,37 +72,65 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // https://stackoverflow.com/questions/4238921/detect-whether-there-is-an-internet-connection-available-on-android
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
+
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.nav_favorites:
-                            selectedFragment = new FavoritesFragment();
-                            break;
-                        case R.id.nav_upload:
-                            if (ParseUser.getCurrentUser().getUsername() != null) {
-                                selectedFragment = new UploadFragment();
+                    if (haveNetworkConnection()) {
+                        switch (item.getItemId()) {
+                            case R.id.nav_home:
+                                selectedFragment = new HomeFragment();
+                                break;
+                            case R.id.nav_favorites:
+                                selectedFragment = new FavoritesFragment();
+                                break;
+                            case R.id.nav_upload:
+                                if (ParseUser.getCurrentUser().getUsername() != null) {
+                                    selectedFragment = new UploadFragment();
 
-                            } else {
-                                selectedFragment = new UploadFragmentEmpty();
-                            }
-                            break;
-                        case R.id.nav_login:
-                            if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
-                                selectedFragment = new AccountFragment();
-                            } else {
-                                selectedFragment = new LoginFragment();
-                            }
-                            break;
-                        default:
-                            selectedFragment = new HomeFragment();
+                                } else {
+                                    selectedFragment = new UploadFragmentEmpty();
+                                }
+                                break;
+                            case R.id.nav_login:
+                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
+                                    selectedFragment = new AccountFragment();
+                                } else {
+                                    selectedFragment = new LoginFragment();
+                                }
+                                break;
+                            default:
+                                selectedFragment = new FavoritesFragment();
+                        }
+                    } else {
+                        selectedFragment = new NoInternetFragment();
                     }
+
+
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 
