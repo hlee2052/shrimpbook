@@ -78,42 +78,65 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
 
         ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("favorites");
         userQuery.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
-        userQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for (ParseObject each : objects) {
-                        viewIdList.add(each.getString("viewId"));
-                    }
 
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
-                    query.whereContainedIn("objectId", viewIdList);
-                    query.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> objects, ParseException e) {
-                            if (e == null) {
-                                for (ParseObject each : objects) {
-                                    listItems.add(new ViewItem(each));
-                                }
-                            }
-                            lAdapter = new ListAdapter(getActivity(), listItems, Utility.FAVORITES_FRAGMENT);
-                            lView.setAdapter(lAdapter);
-                            favoritesInfo = (TextView) getView().findViewById(R.id.favoritesInfo);
-                            if (listItems.size() == 0) {
+       try {
+           userQuery.findInBackground(new FindCallback<ParseObject>() {
+               @Override
+               public void done(List<ParseObject> objects, ParseException e) {
+                   if (e == null) {
+                       for (ParseObject each : objects) {
+                           viewIdList.add(each.getString("viewId"));
+                       }
 
-                                favoritesInfo.setVisibility(View.VISIBLE);
-                                if (ParseUser.getCurrentUser().getUsername() != null) {
-                                    favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
-                                } else {
-                                    favoritesInfo.setText(Utility.LOG_IN_TO_FAV);
-                                }
-                            } else {
-                                favoritesInfo.setVisibility(View.GONE);
-                            }
-                        }
-                    });
-                }
-            }
-        });
+                       ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+                       query.whereContainedIn("objectId", viewIdList);
+
+
+                       try {
+                           query.findInBackground(new FindCallback<ParseObject>() {
+                               @Override
+                               public void done(List<ParseObject> objects, ParseException e) {
+                                   if (e == null) {
+                                       for (ParseObject each : objects) {
+                                           listItems.add(new ViewItem(each));
+                                       }
+                                   }
+                                   lAdapter = new ListAdapter(getActivity(), listItems, Utility.FAVORITES_FRAGMENT);
+                                   lView.setAdapter(lAdapter);
+                                   try {
+                                       favoritesInfo = (TextView) getView().findViewById(R.id.favoritesInfo);
+                                   } catch (Exception ex) {
+
+                                   }
+
+                                   if (listItems.size() == 0) {
+
+                                       favoritesInfo.setVisibility(View.VISIBLE);
+                                       if (ParseUser.getCurrentUser().getUsername() != null) {
+                                           favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
+                                       } else {
+                                           favoritesInfo.setText(Utility.LOG_IN_TO_FAV);
+                                       }
+                                   } else {
+                                       try {
+                                           favoritesInfo.setVisibility(View.GONE);
+
+                                       } catch (Exception ex) {
+
+                                       }
+                                   }
+                               }
+                           });
+                       } catch (Exception ex) {
+
+                       }
+
+                   }
+               }
+           });
+       } catch (Exception e) {
+
+       }
+
     }
 }

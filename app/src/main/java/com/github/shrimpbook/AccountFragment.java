@@ -78,27 +78,40 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
         query.whereEqualTo("userID", ParseUser.getCurrentUser().getObjectId());
 
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
+        try {
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
 
-                if (e == null) {
-                    for (ParseObject each : objects) {
-                        listItems.add(new ViewItem(each));
+                    if (e == null) {
+                        for (ParseObject each : objects) {
+                            listItems.add(new ViewItem(each));
+                        }
+                    }
+
+                    lAdapter = new ListAdapter(getActivity(), listItems, Utility.ACCOUNT_FRAGMENT);
+                    lView.setAdapter(lAdapter);
+                    try {
+                        accountInfo = (TextView) getView().findViewById(R.id.accountInfo);
+                    } catch (Exception ex) {
+                    }
+
+                    if (listItems.size() == 0) {
+                        accountInfo.setVisibility(View.VISIBLE);
+                        accountInfo.setText(Utility.BEGIN_BY_UPLOAD);
+                    } else {
+                        try {
+                            accountInfo.setVisibility(View.GONE);
+
+                        } catch (Exception ex) {
+
+                        }
                     }
                 }
+            });
+        } catch (Exception e) {
 
-                lAdapter = new ListAdapter(getActivity(), listItems, Utility.ACCOUNT_FRAGMENT);
-                lView.setAdapter(lAdapter);
-                accountInfo = (TextView) getView().findViewById(R.id.accountInfo);
+        }
 
-                if (listItems.size() == 0) {
-                    accountInfo.setVisibility(View.VISIBLE);
-                    accountInfo.setText(Utility.BEGIN_BY_UPLOAD);
-                } else {
-                    accountInfo.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 }

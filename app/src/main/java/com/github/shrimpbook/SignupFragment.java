@@ -35,7 +35,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
     final String passwordTooShortText = "Password must be at least 6 characters long";
     final String illegalInput = "Id must be at least 6 characters long!";
 
-
     @Override
     public void onClick(View view) {
 

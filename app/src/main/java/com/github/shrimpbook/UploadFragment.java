@@ -218,7 +218,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageData);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
                 byteArray = stream.toByteArray();
             } catch (Exception e) {
                 e.printStackTrace();

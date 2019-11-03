@@ -2,6 +2,7 @@ package com.github.shrimpbook;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -42,6 +43,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
                     if (user != null && e == null) {
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
+
+
+                        BottomNavigationView bottomNavigationView;
+                        bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
+                        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+
                     } else {
                         Toast.makeText(getActivity(), failedLoginText, Toast.LENGTH_SHORT).show();
                     }

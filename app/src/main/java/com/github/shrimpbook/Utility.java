@@ -3,6 +3,7 @@ package com.github.shrimpbook;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Lee on 10/25/2019.
  */
 
-public class Utility {
+public class Utility extends Fragment{
     //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
     public static final String ACCOUNT_FRAGMENT = "accountFragment";
