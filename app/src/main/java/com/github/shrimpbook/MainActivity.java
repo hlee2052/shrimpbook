@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+/*        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         ParseObject object = new ParseObject("Meow");
         object.put("test1", "asdf22");
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("Failed", "Failed");
                 }
             }
-        });
+        });*/
 
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();

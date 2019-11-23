@@ -27,7 +27,7 @@ import com.parse.ParseUser;
 public class LoginFragment extends Fragment implements View.OnClickListener, View.OnKeyListener{
 
 
-    public final String failedLoginText = "Failed to log in, make sure to check";
+    public final String failedLoginText = "Failed to log in, make sure to check your input!";
     Button loginButton;
     Button signUpButton;
     EditText usernameInput;
@@ -44,11 +44,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
 
-
                         BottomNavigationView bottomNavigationView;
                         bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
                         bottomNavigationView.setSelectedItemId(R.id.nav_home);
-
 
                     } else {
                         Toast.makeText(getActivity(), failedLoginText, Toast.LENGTH_SHORT).show();

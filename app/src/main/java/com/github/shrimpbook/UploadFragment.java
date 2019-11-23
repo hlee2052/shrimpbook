@@ -151,7 +151,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String userObjectId = ParseUser.getCurrentUser().getObjectId();
             String username = ParseUser.getCurrentUser().getUsername();
 
-            if (userObjectId == null || userObjectId == "") {
+            if (userObjectId == null || userObjectId.equals("")) {
                 userObjectId = "temp id";
                 username = "temp user";
             }
@@ -218,7 +218,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageData);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                bitmap.compress(Bitmap.CompressFormat.PNG, Utility.PNG_IMAGE_QUALITY, stream);
                 byteArray = stream.toByteArray();
             } catch (Exception e) {
                 e.printStackTrace();

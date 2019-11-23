@@ -106,7 +106,7 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
                                    try {
                                        favoritesInfo = (TextView) getView().findViewById(R.id.favoritesInfo);
                                    } catch (Exception ex) {
-
+                                        return;
                                    }
 
                                    if (listItems.size() == 0) {

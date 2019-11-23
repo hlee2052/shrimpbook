@@ -80,10 +80,7 @@ public class HomeFragment extends Fragment {
             noInternetView.setVisibility(View.VISIBLE);
             noInternetView.setText(noInternet);
         }
-
-
     }
-
 
 
     private boolean haveNetworkConnection() {

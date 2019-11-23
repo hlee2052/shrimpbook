@@ -88,7 +88,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("I am sign up");
+       // getActivity().setTitle("I am sign up");
 
     }
 
