@@ -106,7 +106,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         spinnerTypeList = new ArrayList<String>();
         Spinner spinnerType = (Spinner) view.findViewById(R.id.type_spinner);
         spinnerTypeList.add("Caridinia");
-        spinnerTypeList.add("Neocaridinia");
+        spinnerTypeList.add("Neocaridina");
         spinnerTypeList.add("Other");
 
         final ArrayAdapter<String> spinnerTypeAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTypeList);

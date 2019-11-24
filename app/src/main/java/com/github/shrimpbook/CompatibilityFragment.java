@@ -128,6 +128,7 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
             List<String> failReasons = new ArrayList<>();
             String shrimpName = eachShrimp.getName();
 
+
              if(eachShrimp.getPH()[0] > pH) {
                  failReasons.add("pH too low");
              } else if (eachShrimp.getPH()[1] < pH) {

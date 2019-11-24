@@ -1,18 +1,13 @@
 package com.github.shrimpbook;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 
 import com.github.shrimpbook.shrimp.Amano;
-import com.github.shrimpbook.shrimp.CRS;
+import com.github.shrimpbook.shrimp.Bee;
 import com.github.shrimpbook.shrimp.Cardinal;
-import com.github.shrimpbook.shrimp.Neocaridinia;
+import com.github.shrimpbook.shrimp.Neocaridina;
 import com.github.shrimpbook.shrimp.Shrimp;
 import com.github.shrimpbook.shrimp.Tiger;
 
@@ -35,8 +30,38 @@ public class Utility extends Fragment{
     public static final int PNG_IMAGE_QUALITY = 50;
 
 
-    public static final String [] SHRIMP_TYPES = new String[] {"Neocaridinia", "CRS", "Tiger", "Amano", "Cardinal"};
+    public static final String [] SHRIMP_TYPES = new String[] {"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
 
+
+    public static final String AMANO_SHRIMP = "Amano";
+    public static final String BEE_SHRIMP = "Bee";
+    public static final String TIGER_SHRIMP = "Tiger";
+    public static final String CARDINAL_SHRIMP = "Cardinal";
+    public static final String NEOCARIDINIA_SHRIMP = "Neocaridina";
+
+    public static final int AMANO_IMAGE = R.drawable.amano;
+    public static final int BEE_IMAGE = R.drawable.bee;
+    public static final int TIGER_IMAGE = R.drawable.tiger;
+    public static final int CARDINAL_IMAGE = R.drawable.cardinal;
+    public static final int NEOCARIDINA_IMAGE = R.drawable.neocaridina;
+
+
+    public static int getShrimpImageByName (String name) {
+        switch (name) {
+            case AMANO_SHRIMP:
+                return AMANO_IMAGE;
+            case NEOCARIDINIA_SHRIMP:
+                return  NEOCARIDINA_IMAGE;
+            case BEE_SHRIMP:
+                return BEE_IMAGE;
+            case TIGER_SHRIMP:
+                return TIGER_IMAGE;
+            case CARDINAL_SHRIMP:
+                return CARDINAL_IMAGE;
+            default:
+                return AMANO_IMAGE;
+        }
+    }
 
 
 
@@ -47,19 +72,19 @@ public class Utility extends Fragment{
         for (String name: shrimpName) {
 
             switch (name) {
-                case "Amano":
+                case AMANO_SHRIMP:
                     shrimpList.add(new Amano());
                     break;
-                case "Neocaridinia":
-                    shrimpList.add(new Neocaridinia());
+                case NEOCARIDINIA_SHRIMP:
+                    shrimpList.add(new Neocaridina());
                     break;
-                case "CRS":
-                    shrimpList.add(new CRS());
+                case BEE_SHRIMP:
+                    shrimpList.add(new Bee());
                     break;
-                case "Tiger":
+                case TIGER_SHRIMP:
                     shrimpList.add(new Tiger());
                     break;
-                case "Cardinal":
+                case CARDINAL_SHRIMP:
                     shrimpList.add(new Cardinal());
                     break;
                 default:
@@ -68,6 +93,8 @@ public class Utility extends Fragment{
         }
         return shrimpList;
     }
+
+
 
 
 

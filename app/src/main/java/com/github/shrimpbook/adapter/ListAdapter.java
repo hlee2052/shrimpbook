@@ -1,4 +1,4 @@
-package com.github.shrimpbook;
+package com.github.shrimpbook.adapter;
 
 /**
  * Created by Lee on 10/25/2019.
@@ -20,6 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.shrimpbook.AccountFragment;
+import com.github.shrimpbook.FavoritesFragment;
+import com.github.shrimpbook.MainActivity;
+import com.github.shrimpbook.R;
+import com.github.shrimpbook.Utility;
 import com.github.shrimpbook.items.ViewItem;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;

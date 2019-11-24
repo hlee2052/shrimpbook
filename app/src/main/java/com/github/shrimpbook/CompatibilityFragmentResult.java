@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.github.shrimpbook.adapter.ShrimpAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +29,11 @@ public class CompatibilityFragmentResult extends Fragment {
     public CompatibilityFragmentResult () {
 
     }
+
+    ListView listView;
+    ListAdapter listAdapter;
+
+
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -45,13 +54,24 @@ public class CompatibilityFragmentResult extends Fragment {
 
         Map<String, List<String>>  res = (Map<String, List<String>>) bundle.getSerializable("resultKey");
 
+        // conver to list for using list adapter;
+        List<String> name = new ArrayList<>();
+        List<List<String>> reasons = new ArrayList<>();
+
+
         for (Map.Entry<String, List<String>> entry : res.entrySet()) {
-            String key = entry.getKey();
-            List<String> value = entry.getValue();
-            Log.i("wee", key.toString());
-            Log.i("weee, ", value.toString());
-            // ...
+            name.add(entry.getKey());
+            reasons.add(entry.getValue());
         }
+
+
+        //int [] val = new int [] {1,2,3,4,5, 8};
+        listView = (ListView) getView().findViewById(R.id.shrimpList);
+
+        listAdapter = new ShrimpAdapter(getActivity(), name, reasons);
+        listView.setAdapter(listAdapter);
+
+
 
         //Toast.makeText(getActivity(),res.get(0).toString(), Toast.LENGTH_SHORT).show();
     }
