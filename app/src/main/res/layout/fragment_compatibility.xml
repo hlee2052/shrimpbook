@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:background="@android:color/holo_blue_bright"
+                app:srcCompat="?android:attr/selectableItemBackground" />
+
+            <TextView
+                android:id="@+id/UploadTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="27dp"
+                android:layout_marginStart="27dp"
+                android:text="Check Compatibility"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <!-- Type spinner-->
+
+        <!--Tank size spinner-->
+
+        <!--Soil type spinner -->
+
+        <!--pH input-->
+
+        <TextView
+            android:id="@+id/pH_Text_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+            android:text="pH"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/pH_input_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <!--GH input-->
+        <TextView
+            android:id="@+id/GH_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+
+            android:background="@drawable/rounded_corner_green"
+            android:text="GH (General Hardness)"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/GH_input_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+
+        <!--KH input-->
+        <TextView
+            android:id="@+id/KH_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+
+            android:text="KH (Carbonate Hardness)"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/KH_input_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <!--Temp (C) input-->
+        <TextView
+            android:id="@+id/temp_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+
+            android:text="Temperature(Celcius)"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/temp_input_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+
+        <!--TDSinput-->
+        <TextView
+            android:id="@+id/TDS_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_green"
+
+            android:text="TDS (Total Dissolved Solids)"
+            android:textSize="25dp"
+            android:textStyle="" />
+
+        <EditText
+            android:id="@+id/TDS_input_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <!--Picture upload button-->
+
+        <Button
+            android:id="@+id/checkCompatibility_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/rounded_corner"
+            android:text="Check"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+</ScrollView>

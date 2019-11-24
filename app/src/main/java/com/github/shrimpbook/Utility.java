@@ -9,6 +9,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.github.shrimpbook.shrimp.Amano;
+import com.github.shrimpbook.shrimp.CRS;
+import com.github.shrimpbook.shrimp.Cardinal;
+import com.github.shrimpbook.shrimp.Neocaridinia;
+import com.github.shrimpbook.shrimp.Shrimp;
+import com.github.shrimpbook.shrimp.Tiger;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Lee on 10/25/2019.
  */
@@ -23,6 +33,49 @@ public class Utility extends Fragment{
     public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
 
     public static final int PNG_IMAGE_QUALITY = 50;
+
+
+    public static final String [] SHRIMP_TYPES = new String[] {"Neocaridinia", "CRS", "Tiger", "Amano", "Cardinal"};
+
+
+
+
+
+    public static List<Shrimp> generateShrimpByNames (String[] shrimpName) {
+
+        List<Shrimp> shrimpList = new ArrayList<>();
+        for (String name: shrimpName) {
+
+            switch (name) {
+                case "Amano":
+                    shrimpList.add(new Amano());
+                    break;
+                case "Neocaridinia":
+                    shrimpList.add(new Neocaridinia());
+                    break;
+                case "CRS":
+                    shrimpList.add(new CRS());
+                    break;
+                case "Tiger":
+                    shrimpList.add(new Tiger());
+                    break;
+                case "Cardinal":
+                    shrimpList.add(new Cardinal());
+                    break;
+                default:
+                    break;
+            }
+        }
+        return shrimpList;
+    }
+
+
+
+
+
+
+
+
 
     public static void moveToAnotherFragment(Fragment fragment, FragmentManager fragmentManager) {
 

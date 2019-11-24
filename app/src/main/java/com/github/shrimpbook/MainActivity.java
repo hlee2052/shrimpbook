@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_upload:
                                 if (ParseUser.getCurrentUser().getUsername() != null) {
                                     selectedFragment = new UploadFragment();
-
                                 } else {
                                     selectedFragment = new UploadFragmentEmpty();
                                 }
@@ -122,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                                     selectedFragment = new LoginFragment();
                                 }
                                 break;
+
+                            case R.id.nav_compatibility:
+                                selectedFragment = new CompatibilityFragment();
+                                break;
+
                             default:
                                 selectedFragment = new FavoritesFragment();
                         }
