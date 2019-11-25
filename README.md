@@ -17,6 +17,8 @@
 An Android project that allows users to share shrimp photo and tank parameters with others
 - User account/login system
 - User can save favourite items
+- User can view other people's system
+- Recommends shrimp based on user's input. 
 - Used Parse SDK to manage database connection
 
 ### Notes:
