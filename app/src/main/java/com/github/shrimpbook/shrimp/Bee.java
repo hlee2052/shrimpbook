@@ -7,11 +7,11 @@ package com.github.shrimpbook.shrimp;
 public class Bee extends Shrimp {
 
     public Bee() {
-        super.setPH(new double[]{1,2});
-        super.setGH(new double[]{5,6});
-        super.setKH(new double[]{1,2});
-        super.setTDS(new double[]{1,2});
-        super.setTEMP(new double[]{25,33});
+        super.setPH(new double[]{5.5,7.0});
+        super.setGH(new double[]{4,6});
+        super.setKH(new double[]{0,1});
+        super.setTDS(new double[]{80,200});
+        super.setTEMP(new double[]{18,25});
         super.setName("Bee");
     }
 }

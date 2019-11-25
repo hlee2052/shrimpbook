@@ -28,10 +28,7 @@ public class Utility extends Fragment{
     public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
 
     public static final int PNG_IMAGE_QUALITY = 50;
-
-
     public static final String [] SHRIMP_TYPES = new String[] {"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
-
 
     public static final String AMANO_SHRIMP = "Amano";
     public static final String BEE_SHRIMP = "Bee";
@@ -63,9 +60,6 @@ public class Utility extends Fragment{
         }
     }
 
-
-
-
     public static List<Shrimp> generateShrimpByNames (String[] shrimpName) {
 
         List<Shrimp> shrimpList = new ArrayList<>();
@@ -94,15 +88,23 @@ public class Utility extends Fragment{
         return shrimpList;
     }
 
-
-
-
-
-
-
-
-
-
+    public static Shrimp getShrimpByName (String name) {
+        Shrimp shrimp;
+        switch (name) {
+            case AMANO_SHRIMP:
+                return new Amano();
+            case NEOCARIDINIA_SHRIMP:
+                return new Neocaridina();
+            case BEE_SHRIMP:
+               return new Bee();
+            case TIGER_SHRIMP:
+                return new Tiger();
+            case CARDINAL_SHRIMP:
+                return new Cardinal();
+            default:
+                return new Neocaridina();
+        }
+    }
 
     public static void moveToAnotherFragment(Fragment fragment, FragmentManager fragmentManager) {
 

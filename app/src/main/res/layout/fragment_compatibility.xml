@@ -46,12 +46,23 @@
         <!--pH input-->
 
         <TextView
+            android:id="@+id/explanationCompatibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Please input your parameters to see which shrimps are compatibile with your system."
+            android:textSize="18sp"
+            android:textStyle="" />
+
+        <TextView
             android:id="@+id/pH_Text_com"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_corner_green"
+            android:background="@drawable/rounded_corner_outline"
             android:text="pH"
             android:textSize="25dp"
             android:textStyle="" />
@@ -73,7 +84,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
 
-            android:background="@drawable/rounded_corner_green"
+            android:background="@drawable/rounded_corner_outline"
             android:text="GH (General Hardness)"
             android:textSize="25dp"
             android:textStyle="" />
@@ -95,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_corner_green"
+            android:background="@drawable/rounded_corner_outline"
 
             android:text="KH (Carbonate Hardness)"
             android:textSize="25dp"
@@ -117,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_corner_green"
+            android:background="@drawable/rounded_corner_outline"
 
             android:text="Temperature(Celcius)"
             android:textSize="25dp"
@@ -140,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_corner_green"
+            android:background="@drawable/rounded_corner_outline"
 
             android:text="TDS (Total Dissolved Solids)"
             android:textSize="25dp"
@@ -163,6 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_corner"
             android:text="Check"
             android:textColor="@android:color/background_light" />

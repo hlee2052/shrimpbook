@@ -74,8 +74,6 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         submitButton = getView().findViewById(R.id.checkCompatibility_submit);
         submitButton.setOnClickListener(this);
 
@@ -85,7 +83,6 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
         tempText = getView().findViewById(R.id.temp_input_com);
         TDSText = getView().findViewById(R.id.TDS_input_com);
     }
-
 
     @Override
     public void onClick(View view) {
@@ -104,14 +101,9 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
             Fragment fragment = new CompatibilityFragmentResult();
             fragment.setArguments(bundle);
 
-
-
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(fragment, fragmentManager);
-
         }
-
-
     }
 
     private HashMap<String, List<String>> analyzeCompatibility() {
@@ -172,6 +164,4 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
         boolean tds = (TDSText.getText().toString().isEmpty());
         return !(pH || gH || KH || temp || tds);
     }
-
-
 }

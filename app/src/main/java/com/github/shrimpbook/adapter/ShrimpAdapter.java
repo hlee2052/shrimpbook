@@ -1,6 +1,7 @@
 package com.github.shrimpbook.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.github.shrimpbook.R;
 import com.github.shrimpbook.Utility;
+import com.github.shrimpbook.shrimp.Shrimp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +23,23 @@ import java.util.List;
  */
 
 public class ShrimpAdapter extends BaseAdapter {
-
-
     Context context;
     List<String> name;
     List<List<String>> reasons;
+    TextView result;
+    TextView shrimpName;
+
+    TextView rangePH;
+    TextView rangeGH;
+    TextView rangeKH;
+    TextView rangeTDS;
+    TextView rangeTemp;
 
     public ShrimpAdapter(Context context, List<String> name, List<List<String>> reasons) {
         this.context = context;
         this.name = name;
         this.reasons = reasons;
     }
-
 
     @Override
     public int getCount() {
@@ -60,7 +67,6 @@ public class ShrimpAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.compatibilityImage);
         imageView.setImageResource(imageID);
 
-
         List<Integer> reasonId = new ArrayList<>();
         reasonId.add(R.id.reason0);
         reasonId.add(R.id.reason1);
@@ -83,11 +89,40 @@ public class ShrimpAdapter extends BaseAdapter {
             }
         }
 
+        shrimpName = (TextView) rowView.findViewById(R.id.CompatibilityShrimpName);
+        shrimpName.setText(name.get(position)+ " shrimp");
+
+        result = (TextView) rowView.findViewById(R.id.CompatibilityResult);
+
+        if (reasonForCurrentShrimp.size() == 0) {
+            result.setText("Compatible");
+            result.setTextColor(Color.GREEN);
+        } else {
+            result.setText("Not Compatible");
+            result.setTextColor(Color.RED);
+        }
+
+        Shrimp current = Utility.getShrimpByName(name.get(position));
+
+        rangePH = (TextView) rowView.findViewById(R.id.rangePH);
+        rangePH.setText(rangeToString(current.getPH()));
+
+        rangeGH = (TextView) rowView.findViewById(R.id.rangeGH);
+        rangeGH.setText(rangeToString(current.getGH()));
+
+        rangeKH = (TextView) rowView.findViewById(R.id.rangeKH);
+        rangeKH.setText(rangeToString(current.getKH()));
+
+        rangeTDS = (TextView) rowView.findViewById(R.id.rangeTDS);
+        rangeTDS.setText(rangeToString(current.getTDS()));
+
+        rangeTemp = (TextView) rowView.findViewById(R.id.rangeTemp);
+        rangeTemp.setText(rangeToString(current.getTEMP()));
+
         return rowView;
     }
 
-    private static class ViewHolder {
-        TextView tmp;
-
+    private String rangeToString (double[] range) {
+        return range[0] + " - " + range[1];
     }
 }

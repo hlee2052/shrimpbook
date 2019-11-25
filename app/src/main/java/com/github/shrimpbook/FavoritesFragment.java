@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,20 +123,19 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
                                            favoritesInfo.setVisibility(View.GONE);
 
                                        } catch (Exception ex) {
-
+                                            Log.i("tag1", "retry db connect");
                                        }
                                    }
                                }
                            });
                        } catch (Exception ex) {
-
+                           Log.i("tag1", "retry db connect");
                        }
-
                    }
                }
            });
        } catch (Exception e) {
-
+           Log.i("tag1", "retry db connect");
        }
 
     }

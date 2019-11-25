@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     try {
                         accountInfo = (TextView) getView().findViewById(R.id.accountInfo);
                     } catch (Exception ex) {
+                        Log.i("DB", "retry DB");
                     }
 
                     if (listItems.size() == 0) {
@@ -103,14 +105,13 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                             accountInfo.setVisibility(View.GONE);
 
                         } catch (Exception ex) {
-
+                            Log.i("DB", "retry DB");
                         }
                     }
                 }
             });
         } catch (Exception e) {
-
+            Log.i("DB", "retry DB");
         }
-
     }
 }

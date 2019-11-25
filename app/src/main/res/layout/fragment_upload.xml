@@ -37,6 +37,17 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/explanationCompatibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Share your tank information with other users."
+            android:textSize="18sp"
+            android:textStyle="" />
+
         <!-- Type spinner-->
         <TextView
             android:id="@+id/shrimpType"
