@@ -1,6 +1,6 @@
 ## Shrimp Book
 
-### Google Play Store - pending
+### Google Play Store - https://play.google.com/store/apps/details?id=com.github.shrimpbook
 
 ### Internet access required to run the application - If not, app will provide warning
 
