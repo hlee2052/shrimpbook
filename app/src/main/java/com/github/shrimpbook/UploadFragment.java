@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,9 +38,15 @@ import com.parse.SaveCallback;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+
+import id.zelory.compressor.Compressor;
 
 /**
  * Created by Lee on 10/24/2019.
@@ -217,6 +224,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             photoDirectory.setText(imageData.getPath());
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageData);
+                bitmap = scaleDown(bitmap, 250);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, Utility.PNG_IMAGE_QUALITY, stream);
                 byteArray = stream.toByteArray();
@@ -249,5 +257,17 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public static Bitmap scaleDown(Bitmap bmp, float maxImageSize) {
+        float ratio = Math.min(
+                (float) maxImageSize / bmp.getWidth(),
+                (float) maxImageSize / bmp.getHeight());
+
+        int width = Math.round((float) ratio * bmp.getWidth());
+        int height = Math.round((float) ratio * bmp.getHeight());
+
+        return (Bitmap.createScaledBitmap(bmp, width,
+                height, true));
     }
 }

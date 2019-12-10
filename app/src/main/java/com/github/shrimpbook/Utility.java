@@ -27,7 +27,7 @@ public class Utility extends Fragment{
     public static final String BEGIN_BY_ADD_FAV = "You don't have any favorite items, Begin by add them from Home screen";
     public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
 
-    public static final int PNG_IMAGE_QUALITY = 50;
+    public static final int PNG_IMAGE_QUALITY = 0;
     public static final String [] SHRIMP_TYPES = new String[] {"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
 
     public static final String AMANO_SHRIMP = "Amano";

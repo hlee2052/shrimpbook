@@ -30,6 +30,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile 'com.parse:parse-android:1.16.3'
     //update version to the latest one
+
+    implementation 'id.zelory:compressor:2.1.0'
+
 }
 
 repositories {

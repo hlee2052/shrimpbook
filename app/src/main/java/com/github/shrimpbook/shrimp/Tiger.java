@@ -7,11 +7,11 @@ package com.github.shrimpbook.shrimp;
 public class Tiger extends Shrimp {
 
     public Tiger() {
-        super.setPH(new double[]{1,2});
-        super.setGH(new double[]{9,10});
-        super.setKH(new double[]{1,2});
-        super.setTDS(new double[]{1,2});
-        super.setTEMP(new double[]{1,2});
+        super.setPH(new double[]{6.5,7.5});
+        super.setGH(new double[]{4,10});
+        super.setKH(new double[]{2,6});
+        super.setTDS(new double[]{150,200});
+        super.setTEMP(new double[]{18,26});
         super.setName("Tiger");
     }
 }
