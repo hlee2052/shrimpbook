@@ -9,10 +9,12 @@
     <ListView
         android:id="@+id/androidList"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="484dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -31,11 +33,11 @@
         tools:layout_editor_absoluteY="361dp" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="81dp"
         android:background="@android:color/holo_blue_bright"
-        app:srcCompat="?android:attr/selectableItemBackground"
-        android:id="@+id/imageView" />
+        app:srcCompat="?android:attr/selectableItemBackground" />
 
     <TextView
         android:id="@+id/UploadTitle"
