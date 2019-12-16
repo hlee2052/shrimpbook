@@ -44,6 +44,7 @@ import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import id.zelory.compressor.Compressor;
@@ -112,8 +113,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         // Spinner for shrimp Type
         spinnerTypeList = new ArrayList<String>();
         Spinner spinnerType = (Spinner) view.findViewById(R.id.type_spinner);
-        spinnerTypeList.add("Caridinia");
-        spinnerTypeList.add("Neocaridina");
+        Collections.addAll(spinnerTypeList, Utility.SHRIMP_TYPES);
         spinnerTypeList.add("Other");
 
         final ArrayAdapter<String> spinnerTypeAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTypeList);

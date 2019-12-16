@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.github.shrimpbook.adapter.ListAdapter;
 import com.github.shrimpbook.items.ViewItem;
 import com.parse.FindCallback;
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -91,8 +92,7 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
 
                        ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
                        query.whereContainedIn("objectId", viewIdList);
-
-
+                       
                        try {
                            query.findInBackground(new FindCallback<ParseObject>() {
                                @Override
@@ -113,7 +113,8 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
                                    if (listItems.size() == 0) {
 
                                        favoritesInfo.setVisibility(View.VISIBLE);
-                                       if (ParseUser.getCurrentUser().getUsername() != null) {
+                                       boolean isAnonymous = ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
+                                       if (ParseUser.getCurrentUser().getUsername() != null && !isAnonymous) {
                                            favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
                                        } else {
                                            favoritesInfo.setText(Utility.LOG_IN_TO_FAV);

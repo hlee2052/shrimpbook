@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 break;
                             case R.id.nav_login:
-                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
+                                boolean isAnonymous =ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
+                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null && !isAnonymous) {
                                     selectedFragment = new AccountFragment();
                                 } else {
                                     selectedFragment = new LoginFragment();

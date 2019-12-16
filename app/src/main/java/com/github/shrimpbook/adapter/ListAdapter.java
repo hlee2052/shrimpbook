@@ -141,11 +141,18 @@ public class ListAdapter extends BaseAdapter {
             favButton.setText("Remove");
         }
 
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(context, "try click!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (isFavorites) {
                     String favoriteEntryToDelete = viewItems.get(position).getViewObjectId();
                     ParseQuery<ParseObject> queryTest = ParseQuery.getQuery("favorites");
@@ -161,7 +168,6 @@ public class ListAdapter extends BaseAdapter {
                                     e1.printStackTrace();
                                 }
                                 each.saveInBackground();
-
                             }
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new FavoritesFragment(), fragmentManager);
