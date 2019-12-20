@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        ParseUser.enableAutomaticUser();
-        ParseACL defaultACL = new ParseACL();
+        //ParseUser.enableAutomaticUser();
+       /* ParseACL defaultACL = new ParseACL();
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
-
+*/
         // For bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -92,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
         return haveConnectedWifi || haveConnectedMobile;
     }
 
-
-
-
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -102,23 +99,28 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     if (haveNetworkConnection()) {
+                       // boolean isAnonymous =ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
+
                         switch (item.getItemId()) {
                             case R.id.nav_home:
                                 selectedFragment = new HomeFragment();
                                 break;
                             case R.id.nav_favorites:
-                                selectedFragment = new FavoritesFragment();
+                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
+                                    selectedFragment = new FavoritesFragment();
+                                } else {
+                                   selectedFragment = new FavoritesFragmentEmpty();
+                                }
                                 break;
                             case R.id.nav_upload:
-                                if (ParseUser.getCurrentUser().getUsername() != null) {
+                                if (ParseUser.getCurrentUser() != null &&  ParseUser.getCurrentUser().getUsername() != null ) {
                                     selectedFragment = new UploadFragment();
                                 } else {
                                     selectedFragment = new UploadFragmentEmpty();
                                 }
                                 break;
                             case R.id.nav_login:
-                                boolean isAnonymous =ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
-                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null && !isAnonymous) {
+                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
                                     selectedFragment = new AccountFragment();
                                 } else {
                                     selectedFragment = new LoginFragment();
@@ -135,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         selectedFragment = new NoInternetFragment();
                     }
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 

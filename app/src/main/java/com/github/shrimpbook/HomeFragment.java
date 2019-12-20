@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.shrimpbook.adapter.ListAdapter;
 import com.github.shrimpbook.items.ViewItem;
@@ -60,21 +62,27 @@ public class HomeFragment extends Fragment {
                 }
             });
 
+            try {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e) {
+                        if (e == null) {
+                            for (ParseObject each : objects) {
+                                listItems.add(new ViewItem(each));
+                            }
 
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> objects, ParseException e) {
-                    if (e == null) {
-                        for (ParseObject each : objects) {
-                            listItems.add(new ViewItem(each));
                         }
-
+                        lAdapter = new ListAdapter(getActivity(), listItems);
+                        lView.setAdapter(lAdapter);
                     }
-                    lAdapter = new ListAdapter(getActivity(), listItems);
-                    lView.setAdapter(lAdapter);
-                }
-            });
+                });
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Problem with home page when start", Toast.LENGTH_SHORT).show();
+                Log.i("exception at home", "issue with home screen");
+            }
+
+
         } else {
             String noInternet = "You need internet connection for the app the work! Try to tap another section after you have internet connection!";
             noInternetView = getView().findViewById(R.id.homeNoInternet);

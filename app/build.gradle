@@ -6,7 +6,7 @@ android {
         applicationId "com.github.shrimpbook"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 4
+        versionCode 8
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
