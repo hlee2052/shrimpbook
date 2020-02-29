@@ -7,10 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Lee on 10/26/2019.
- */
-
 public class NoInternetFragment extends Fragment {
 
     @Nullable

@@ -1,6 +1,7 @@
 package com.github.shrimpbook;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,23 +26,18 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Lee on 10/24/2019.
- */
-
 
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
-    List<ViewItem> listItems;
-    ListView lView;
-    ListAdapter lAdapter;
-    Button logOutButton;
-    TextView accountInfo;
-
+    private List<ViewItem> listItems;
+    private ListView lView;
+    private ListAdapter lAdapter;
+    private Button logOutButton;
+    private TextView accountInfo;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
@@ -57,10 +53,9 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
         logOutButton = getView().findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(this);
         listItems = new ArrayList<>();
@@ -82,19 +77,17 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
-
                     if (e == null) {
                         for (ParseObject each : objects) {
                             listItems.add(new ViewItem(each));
                         }
                     }
-
                     lAdapter = new ListAdapter(getActivity(), listItems, Utility.ACCOUNT_FRAGMENT);
                     lView.setAdapter(lAdapter);
                     try {
                         accountInfo = (TextView) getView().findViewById(R.id.accountInfo);
-                    } catch (Exception ex) {
-                        Log.i("DB", "retry DB");
+                    } catch (RuntimeException ex) {
+                        Log.i("Error", "retry connection before setting view");
                     }
 
                     if (listItems.size() == 0) {
@@ -103,15 +96,14 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     } else {
                         try {
                             accountInfo.setVisibility(View.GONE);
-
                         } catch (Exception ex) {
-                            Log.i("DB", "retry DB");
+                            Log.i("Error", "Account info view not available");
                         }
                     }
                 }
             });
         } catch (Exception e) {
-            Log.i("DB", "retry DB");
+            Log.i("Error", "Failed to query - retry DB connection");
         }
     }
 }

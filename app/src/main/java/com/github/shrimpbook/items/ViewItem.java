@@ -9,7 +9,6 @@ import com.parse.ParseObject;
  */
 
 public class ViewItem {
-
     private ParseFile file;
     private String shrimpType;
     private String tankSize;
@@ -26,14 +25,11 @@ public class ViewItem {
         this.file = (ParseFile) object.get("image");
         this.shrimpType = (String) object.get("shrimpType");
         this.tankSize = (String) object.get("tankSize");
-
         this.soilType = (String) object.get("soilType");
         this.pH = (String) object.get("pH");
-
         this.GH = (String) object.get("GH");
         this.KH = (String) object.get("KH");
         this.viewObjectId = (String) object.getObjectId();
-
         this.temp = (String) object.get("temp");
         this.TDS = (String) object.get("TDS");
     }
@@ -77,5 +73,4 @@ public class ViewItem {
     public String getTemp () {
         return temp;
     }
-
 }

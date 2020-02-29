@@ -18,22 +18,19 @@ import com.github.shrimpbook.shrimp.Shrimp;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Lee on 11/23/2019.
- */
 
 public class ShrimpAdapter extends BaseAdapter {
-    Context context;
-    List<String> name;
-    List<List<String>> reasons;
-    TextView result;
-    TextView shrimpName;
+    private Context context;
+    private List<String> name;
+    private List<List<String>> reasons;
+    private TextView result;
+    private TextView shrimpName;
 
-    TextView rangePH;
-    TextView rangeGH;
-    TextView rangeKH;
-    TextView rangeTDS;
-    TextView rangeTemp;
+    private TextView rangePH;
+    private TextView rangeGH;
+    private TextView rangeKH;
+    private TextView rangeTDS;
+    private TextView rangeTemp;
 
     public ShrimpAdapter(Context context, List<String> name, List<List<String>> reasons) {
         this.context = context;
@@ -79,7 +76,7 @@ public class ShrimpAdapter extends BaseAdapter {
 
         TextView textView;
         for (int i=0; i<reasonId.size(); i++) {
-            textView = (TextView)  rowView.findViewById(reasonId.get(i));
+            textView = rowView.findViewById(reasonId.get(i));
 
             if ( i >= reasonSize) {
                 textView.setVisibility(View.GONE);
@@ -89,10 +86,10 @@ public class ShrimpAdapter extends BaseAdapter {
             }
         }
 
-        shrimpName = (TextView) rowView.findViewById(R.id.CompatibilityShrimpName);
+        shrimpName = rowView.findViewById(R.id.CompatibilityShrimpName);
         shrimpName.setText(name.get(position)+ " shrimp");
 
-        result = (TextView) rowView.findViewById(R.id.CompatibilityResult);
+        result = rowView.findViewById(R.id.CompatibilityResult);
 
         if (reasonForCurrentShrimp.size() == 0) {
             result.setText("Compatible");
@@ -104,19 +101,19 @@ public class ShrimpAdapter extends BaseAdapter {
 
         Shrimp current = Utility.getShrimpByName(name.get(position));
 
-        rangePH = (TextView) rowView.findViewById(R.id.rangePH);
+        rangePH = rowView.findViewById(R.id.rangePH);
         rangePH.setText(rangeToString(current.getPH()));
 
-        rangeGH = (TextView) rowView.findViewById(R.id.rangeGH);
+        rangeGH = rowView.findViewById(R.id.rangeGH);
         rangeGH.setText(rangeToString(current.getGH()));
 
-        rangeKH = (TextView) rowView.findViewById(R.id.rangeKH);
+        rangeKH = rowView.findViewById(R.id.rangeKH);
         rangeKH.setText(rangeToString(current.getKH()));
 
-        rangeTDS = (TextView) rowView.findViewById(R.id.rangeTDS);
+        rangeTDS = rowView.findViewById(R.id.rangeTDS);
         rangeTDS.setText(rangeToString(current.getTDS()));
 
-        rangeTemp = (TextView) rowView.findViewById(R.id.rangeTemp);
+        rangeTemp = rowView.findViewById(R.id.rangeTemp);
         rangeTemp.setText(rangeToString(current.getTEMP()));
 
         return rowView;

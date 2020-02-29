@@ -1,16 +1,11 @@
 package com.github.shrimpbook.adapter;
 
-/**
- * Created by Lee on 10/25/2019.
- */
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.shrimpbook.AccountFragment;
-import com.github.shrimpbook.FavoritesFragment;
+import com.github.shrimpbook.favorites.FavoritesFragment;
 import com.github.shrimpbook.MainActivity;
 import com.github.shrimpbook.R;
 import com.github.shrimpbook.Utility;
 import com.github.shrimpbook.items.ViewItem;
-import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -38,14 +31,12 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.io.UTFDataFormatException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class ListAdapter extends BaseAdapter {
 
-    Context context;
+    private Context context;
     private List<ViewItem> viewItems;
     private String viewTYpe;
 
@@ -72,7 +63,6 @@ public class ListAdapter extends BaseAdapter {
         if (type.equals(Utility.FAVORITES_FRAGMENT)) {
             isFavorites = true;
         }
-
     }
 
 
@@ -115,7 +105,7 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.KHTextView = (TextView) convertView.findViewById(R.id.KHHome);
             viewHolder.shrimpImageView = (ImageView) convertView.findViewById(R.id.singleItemImage);
             viewHolder.viewObjectId = (TextView) convertView.findViewById(R.id.itemObjectId);
-            viewHolder.tempTextView= (TextView) convertView.findViewById(R.id.tempHome);
+            viewHolder.tempTextView = (TextView) convertView.findViewById(R.id.tempHome);
             viewHolder.TDSTextView = (TextView) convertView.findViewById(R.id.TDSHome);
 
             result = convertView;
@@ -141,11 +131,9 @@ public class ListAdapter extends BaseAdapter {
             favButton.setText("Remove");
         }
 
-
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(context, "try click!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -160,14 +148,14 @@ public class ListAdapter extends BaseAdapter {
 
                     queryTest.findInBackground(new FindCallback<ParseObject>() {
                         @Override
-                        public void done(List<ParseObject> objects, ParseException e) {
-                            for (ParseObject each : objects) {
+                        public void done(List<ParseObject> parseObjects, ParseException e) {
+                            for (ParseObject entry : parseObjects) {
                                 try {
-                                    each.delete();
+                                    entry.delete();
                                 } catch (ParseException e1) {
                                     e1.printStackTrace();
                                 }
-                                each.saveInBackground();
+                                entry.saveInBackground();
                             }
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new FavoritesFragment(), fragmentManager);
@@ -175,15 +163,15 @@ public class ListAdapter extends BaseAdapter {
                         }
                     });
                 } else {
-                    ParseObject object = new ParseObject("favorites");
+                    ParseObject parseObject = new ParseObject("favorites");
 
                     String currentUserObjectId = ParseUser.getCurrentUser().getObjectId();
-                    object.put("userId", currentUserObjectId);
+                    parseObject.put("userId", currentUserObjectId);
 
                     String viewItemId = viewItems.get(position).getViewObjectId();
-                    object.put("viewId", viewItemId);
+                    parseObject.put("viewId", viewItemId);
 
-                    object.saveInBackground(new SaveCallback() {
+                    parseObject.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
@@ -208,11 +196,9 @@ public class ListAdapter extends BaseAdapter {
                 query.getInBackground(objectIdToDelete, new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject object, ParseException e) {
-
                         try {
                             object.delete();
                             object.saveInBackground();
-
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new AccountFragment(), fragmentManager);
                             Toast.makeText(context, "The item has been deleted", Toast.LENGTH_SHORT).show();

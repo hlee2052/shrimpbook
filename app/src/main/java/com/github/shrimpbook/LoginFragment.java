@@ -24,20 +24,18 @@ import com.parse.ParseUser;
  */
 
 
-public class LoginFragment extends Fragment implements View.OnClickListener, View.OnKeyListener{
+public class LoginFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
 
-
-    public final String failedLoginText = "Failed to log in, make sure to check your input!";
-    Button loginButton;
-    Button signUpButton;
-    EditText usernameInput;
-    EditText passwordInput;
+    private final String failedLoginText = "Failed to log in, make sure to check your input!";
+    private Button loginButton;
+    private Button signUpButton;
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.loginButton) {
-
-            ParseUser.logInInBackground(usernameInput.getText().toString(),passwordInput.getText().toString() , new LogInCallback() {
+            ParseUser.logInInBackground(usernameInput.getText().toString(), passwordInput.getText().toString(), new LogInCallback() {
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if (user != null && e == null) {
@@ -65,8 +63,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
         return false;
     }
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

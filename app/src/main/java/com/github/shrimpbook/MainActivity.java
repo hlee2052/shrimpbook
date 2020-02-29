@@ -6,20 +6,17 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
+import com.github.shrimpbook.compatibility.CompatibilityFragment;
+import com.github.shrimpbook.favorites.FavoritesFragment;
+import com.github.shrimpbook.favorites.FavoritesFragmentEmpty;
+import com.github.shrimpbook.upload.UploadFragment;
+import com.github.shrimpbook.upload.UploadFragmentEmpty;
 import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseAnonymousUtils;
-import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.ParseInstallation;
-import com.parse.SaveCallback;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // This is where user should supplement app-Id and client-key for the Parse Server
         String appId = "";
         String clientKey = "";
 
@@ -40,29 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 .build()
         );
 
-
-/*        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-        ParseObject object = new ParseObject("Meow");
-        object.put("test1", "asdf22");
-
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException ex) {
-                if (ex == null) {
-                    Log.i("Result", "work!");
-                } else {
-                    Log.i("Failed", "Failed");
-                }
-            }
-        });*/
-
-        //ParseUser.enableAutomaticUser();
-       /* ParseACL defaultACL = new ParseACL();
-        defaultACL.setPublicReadAccess(true);
-        defaultACL.setPublicWriteAccess(true);
-        ParseACL.setDefaultACL(defaultACL, true);
-*/
         // For bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -96,11 +71,10 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                     Fragment selectedFragment = null;
 
                     if (haveNetworkConnection()) {
-                       // boolean isAnonymous =ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
-
                         switch (item.getItemId()) {
                             case R.id.nav_home:
                                 selectedFragment = new HomeFragment();
@@ -109,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
                                 if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
                                     selectedFragment = new FavoritesFragment();
                                 } else {
-                                   selectedFragment = new FavoritesFragmentEmpty();
+                                    selectedFragment = new FavoritesFragmentEmpty();
                                 }
                                 break;
                             case R.id.nav_upload:
-                                if (ParseUser.getCurrentUser() != null &&  ParseUser.getCurrentUser().getUsername() != null ) {
+                                if (ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername() != null) {
                                     selectedFragment = new UploadFragment();
                                 } else {
                                     selectedFragment = new UploadFragmentEmpty();
@@ -126,11 +100,9 @@ public class MainActivity extends AppCompatActivity {
                                     selectedFragment = new LoginFragment();
                                 }
                                 break;
-
                             case R.id.nav_compatibility:
                                 selectedFragment = new CompatibilityFragment();
                                 break;
-
                             default:
                                 selectedFragment = new FavoritesFragment();
                         }

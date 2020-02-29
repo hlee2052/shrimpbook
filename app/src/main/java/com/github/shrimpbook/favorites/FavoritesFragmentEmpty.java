@@ -1,4 +1,4 @@
-package com.github.shrimpbook;
+package com.github.shrimpbook.favorites;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,31 +9,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.github.shrimpbook.LoginFragment;
+import com.github.shrimpbook.R;
+import com.github.shrimpbook.Utility;
 
 /**
- * Created by Lee on 10/26/2019.
+ * Created by Lee on 12/16/2019.
  */
 
-public class UploadFragmentEmpty extends Fragment implements View.OnClickListener {
+public class FavoritesFragmentEmpty extends Fragment implements View.OnClickListener {
 
     Button button;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_upload_empty, container, false);
+        return inflater.inflate(R.layout.fragment_favorites_empty, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        button = (Button) getView().findViewById(R.id.uploadLogIn);
+        button = (Button) getView().findViewById(R.id.uploadLogInFav);
         button.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.uploadLogIn) {
+        if (view.getId() == R.id.uploadLogInFav) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
 
@@ -43,4 +46,3 @@ public class UploadFragmentEmpty extends Fragment implements View.OnClickListene
         }
     }
 }
-

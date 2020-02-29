@@ -1,9 +1,7 @@
 package com.github.shrimpbook.shrimp;
 
-/**
- * Created by Lee on 11/23/2019.
- */
 
+// Parent class of different shrimps
 public class Shrimp {
 
     private double[] PH;
@@ -12,7 +10,6 @@ public class Shrimp {
     private double[] TDS;
     private double[] TEMP;
     private String name;
-
 
     public void setPH (double[] val) {
         this.PH = val;
@@ -37,7 +34,6 @@ public class Shrimp {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getName() {
         return name;

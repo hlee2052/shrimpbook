@@ -1,9 +1,5 @@
 package com.github.shrimpbook.shrimp;
 
-/**
- * Created by Lee on 11/23/2019.
- */
-
 public class Tiger extends Shrimp {
 
     public Tiger() {

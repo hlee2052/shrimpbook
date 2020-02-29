@@ -1,21 +1,19 @@
-package com.github.shrimpbook;
+package com.github.shrimpbook.upload;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,36 +27,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.shrimpbook.HomeFragment;
+import com.github.shrimpbook.R;
+import com.github.shrimpbook.Utility;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import id.zelory.compressor.Compressor;
-
-/**
- * Created by Lee on 10/24/2019.
- */
-
 
 public class UploadFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    byte[] byteArray;
+    private byte[] photoByteArray;
 
-    TextView photoDirectory;
+    private TextView photoDirectory;
 
     private String typeResult;
     private String soilResult;
@@ -85,18 +73,15 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_upload, container, false);
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         photoDirectory = getView().findViewById(R.id.photoDirectory);
-
 
         pictureUploadButton = getView().findViewById(R.id.picture_upload_button);
         pictureUploadButton.setOnClickListener(this);
@@ -111,31 +96,31 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         TDSText = getView().findViewById(R.id.TDS_input);
 
         // Spinner for shrimp Type
-        spinnerTypeList = new ArrayList<String>();
+        spinnerTypeList = new ArrayList<>();
         Spinner spinnerType = (Spinner) view.findViewById(R.id.type_spinner);
         Collections.addAll(spinnerTypeList, Utility.SHRIMP_TYPES);
         spinnerTypeList.add("Other");
 
-        final ArrayAdapter<String> spinnerTypeAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTypeList);
+        final ArrayAdapter<String> spinnerTypeAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTypeList);
         spinnerTypeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerType.setAdapter(spinnerTypeAdapter);
         spinnerType.setOnItemSelectedListener(this);
 
         // Spinner for soil type
-        spinnerSoilList = new ArrayList<String>();
+        spinnerSoilList = new ArrayList<>();
         Spinner spinnerSoil = (Spinner) view.findViewById(R.id.soil_spinner);
         spinnerSoilList.add("Gravel(Inert)");
         spinnerSoilList.add("Aquasoil(acidic)");
         spinnerSoilList.add("Limestone (basic)");
         spinnerSoilList.add("Other");
 
-        final ArrayAdapter<String> soilTypeAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerSoilList);
+        final ArrayAdapter<String> soilTypeAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerSoilList);
         soilTypeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerSoil.setAdapter(soilTypeAdapter);
         spinnerSoil.setOnItemSelectedListener(this);
 
         // Spinner for tank size
-        spinnerTankSizeList = new ArrayList<String>();
+        spinnerTankSizeList = new ArrayList<>();
         Spinner spinnerTankSize = (Spinner) view.findViewById(R.id.tankSize_spinner);
         spinnerTankSizeList.add("< 5 gallons");
         spinnerTankSizeList.add("10 gallons");
@@ -144,8 +129,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         spinnerTankSizeList.add("25 gallons");
         spinnerTankSizeList.add("> 25 gallons");
 
-
-        final ArrayAdapter<String> TankSizeAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTankSizeList);
+        final ArrayAdapter<String> TankSizeAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerTankSizeList);
         TankSizeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerTankSize.setAdapter(TankSizeAdapter);
         spinnerTankSize.setOnItemSelectedListener(this);
@@ -181,8 +165,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             object.put("userID", userObjectId);
             object.put("useName", username);
 
-            if (byteArray != null && byteArray.length > 0) {
-                ParseFile file = new ParseFile("image.png", byteArray);
+            if (photoByteArray != null && photoByteArray.length > 0) {
+                ParseFile file = new ParseFile("image.png", photoByteArray);
                 object.put("image", file);
             }
 
@@ -209,7 +193,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         }
     }
 
-    public void getPhotoFromStorage() {
+    private void getPhotoFromStorage() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }
@@ -220,16 +204,16 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
             Uri imageData = data.getData();
-
-            photoDirectory.setText(imageData.getPath());
             try {
+                photoDirectory.setText(imageData.getPath());
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageData);
                 bitmap = scaleDown(bitmap, 250);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, Utility.PNG_IMAGE_QUALITY, stream);
-                byteArray = stream.toByteArray();
+                photoByteArray = stream.toByteArray();
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.i("Error", "Failed to process byte stream");
             }
         }
     }
@@ -256,10 +240,11 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        // empty
     }
 
-    public static Bitmap scaleDown(Bitmap bmp, float maxImageSize) {
+
+    private static Bitmap scaleDown(Bitmap bmp, float maxImageSize) {
         float ratio = Math.min(
                 (float) maxImageSize / bmp.getWidth(),
                 (float) maxImageSize / bmp.getHeight());

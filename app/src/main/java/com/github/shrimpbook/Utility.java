@@ -14,12 +14,8 @@ import com.github.shrimpbook.shrimp.Tiger;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Lee on 10/25/2019.
- */
 
-public class Utility extends Fragment{
-    //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+public class Utility extends Fragment {
 
     public static final String ACCOUNT_FRAGMENT = "accountFragment";
     public static final String FAVORITES_FRAGMENT = "favoritesFragment";
@@ -28,7 +24,7 @@ public class Utility extends Fragment{
     public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
 
     public static final int PNG_IMAGE_QUALITY = 0;
-    public static final String [] SHRIMP_TYPES = new String[] {"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
+    public static final String[] SHRIMP_TYPES = new String[]{"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
 
     public static final String AMANO_SHRIMP = "Amano";
     public static final String BEE_SHRIMP = "Bee";
@@ -43,12 +39,12 @@ public class Utility extends Fragment{
     public static final int NEOCARIDINA_IMAGE = R.drawable.neocaridina;
 
 
-    public static int getShrimpImageByName (String name) {
+    public static int getShrimpImageByName(String name) {
         switch (name) {
             case AMANO_SHRIMP:
                 return AMANO_IMAGE;
             case NEOCARIDINIA_SHRIMP:
-                return  NEOCARIDINA_IMAGE;
+                return NEOCARIDINA_IMAGE;
             case BEE_SHRIMP:
                 return BEE_IMAGE;
             case TIGER_SHRIMP:
@@ -60,11 +56,9 @@ public class Utility extends Fragment{
         }
     }
 
-    public static List<Shrimp> generateShrimpByNames (String[] shrimpName) {
-
+    public static List<Shrimp> generateShrimpByNames(String[] shrimpName) {
         List<Shrimp> shrimpList = new ArrayList<>();
-        for (String name: shrimpName) {
-
+        for (String name : shrimpName) {
             switch (name) {
                 case AMANO_SHRIMP:
                     shrimpList.add(new Amano());
@@ -88,15 +82,14 @@ public class Utility extends Fragment{
         return shrimpList;
     }
 
-    public static Shrimp getShrimpByName (String name) {
-        Shrimp shrimp;
+    public static Shrimp getShrimpByName(String name) {
         switch (name) {
             case AMANO_SHRIMP:
                 return new Amano();
             case NEOCARIDINIA_SHRIMP:
                 return new Neocaridina();
             case BEE_SHRIMP:
-               return new Bee();
+                return new Bee();
             case TIGER_SHRIMP:
                 return new Tiger();
             case CARDINAL_SHRIMP:
@@ -107,8 +100,6 @@ public class Utility extends Fragment{
     }
 
     public static void moveToAnotherFragment(Fragment fragment, FragmentManager fragmentManager) {
-
-        //Fragment fragment = new SignupFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);

@@ -1,10 +1,9 @@
-package com.github.shrimpbook;
+package com.github.shrimpbook.compatibility;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +13,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.shrimpbook.R;
+import com.github.shrimpbook.Utility;
 import com.github.shrimpbook.adapter.ShrimpAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
