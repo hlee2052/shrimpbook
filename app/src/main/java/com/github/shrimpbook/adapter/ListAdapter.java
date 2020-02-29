@@ -65,7 +65,6 @@ public class ListAdapter extends BaseAdapter {
         }
     }
 
-
     @Override
     public int getCount() {
         return viewItems.size();
@@ -107,7 +106,6 @@ public class ListAdapter extends BaseAdapter {
             viewHolder.viewObjectId = (TextView) convertView.findViewById(R.id.itemObjectId);
             viewHolder.tempTextView = (TextView) convertView.findViewById(R.id.tempHome);
             viewHolder.TDSTextView = (TextView) convertView.findViewById(R.id.TDSHome);
-
             result = convertView;
             convertView.setTag(viewHolder);
         } else {
@@ -136,7 +134,6 @@ public class ListAdapter extends BaseAdapter {
             public void onClick(View view) {
             }
         });
-
 
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +199,6 @@ public class ListAdapter extends BaseAdapter {
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new AccountFragment(), fragmentManager);
                             Toast.makeText(context, "The item has been deleted", Toast.LENGTH_SHORT).show();
-
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }
@@ -242,7 +238,6 @@ public class ListAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-
         TextView shrimpTypeTextView;
         TextView soilTypeTextView;
         TextView tankSizeTextView;
