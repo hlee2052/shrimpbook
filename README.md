@@ -28,3 +28,15 @@ An Android project that allows users to share shrimp photo and tank parameters w
   2. User Password (hidden by Parse server)
   3. Shrimp related posts associated with each user (image, water parameters)
   
+### Improvements
+- The main landing page loads all list of entries through querying. In the case where there are large number of entries, it may be taking up too much data on request. One solution is to put a 'WHERE' clause, so that only a certain amout of entries are quried, and if user chooses to scroll down, then do additional queries.
+
+- Due to server tier, 
+
+- Additional features that could be useful:
+  1. add a loading spinner/page when app starts up
+  2. provide search/filter
+  3. implement details page for users to browse through each entry, perhaps add comment section
+  4. also support 3rd party log in, such as Google
+  5. create a help page, so that user can have better grasp of the app.
+
