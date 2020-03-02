@@ -1,12 +1,11 @@
 package com.github.shrimpbook;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
             ParseUser.logInInBackground(usernameInput.getText().toString(), passwordInput.getText().toString(), new LogInCallback() {
                 @Override
                 public void done(ParseUser user, ParseException e) {
-                    if (user != null && e == null) {
+                    if (user != null && e == null && getActivity() != null) {
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
                         BottomNavigationView bottomNavigationView;
@@ -51,9 +50,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
             });
         }
 
-        if (view.getId() == R.id.signUpButton) {
+        if (view.getId() == R.id.signUpButton && getActivity() != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            Utility.moveToAnotherFragment(new SignupFragment(), fragmentManager);
+            Utility.moveToAnotherFragment(new SignUpFragment(), fragmentManager);
         }
     }
 
@@ -68,7 +67,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         loginButton = getView().findViewById(R.id.loginButton);
@@ -82,10 +81,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Vie
 
     }
 
-    // This is called sometimes after onCreate
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 }

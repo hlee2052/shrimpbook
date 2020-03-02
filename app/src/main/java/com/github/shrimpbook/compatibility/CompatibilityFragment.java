@@ -91,33 +91,33 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
             String shrimpName = shrimp.getName();
 
              if(shrimp.getPH()[0] > pH) {
-                 failReasons.add("pH too low");
+                 failReasons.add(getString(R.string.pH_too_low));
              } else if (shrimp.getPH()[1] < pH) {
-                 failReasons.add("pH too high");
+                 failReasons.add(getString(R.string.pH_too_high));
              }
 
             if(shrimp.getGH()[0] > gH) {
-                failReasons.add("GH too low");
+                failReasons.add(getString(R.string.gH_too_low));
             } else if (shrimp.getGH()[1] < gH) {
-                failReasons.add("GH too high");
+                failReasons.add(getString(R.string.gH_too_high));
             }
 
             if(shrimp.getKH()[0] > KH) {
-                failReasons.add("KH too low");
+                failReasons.add(getString(R.string.kH_too_low));
             } else if (shrimp.getKH()[1] < KH) {
-                failReasons.add("KH too high");
+                failReasons.add(getString(R.string.kH_too_high));
             }
 
             if(shrimp.getTDS()[0] > TDS) {
-                failReasons.add("TDS too low");
+                failReasons.add(getString(R.string.tds_too_low));
             } else if (shrimp.getTDS()[1] < TDS) {
-                failReasons.add("TDS too high");
+                failReasons.add(getString(R.string.tds_too_high));
             }
 
             if(shrimp.getTEMP()[0] > temp) {
-                failReasons.add("temperature too low");
+                failReasons.add(getString(R.string.temp_too_low));
             } else if (shrimp.getTEMP()[1] < temp) {
-                failReasons.add("temperature too high");
+                failReasons.add(getString(R.string.temp_too_high));
             }
             compatibilityResult.put(shrimpName, failReasons);
         }

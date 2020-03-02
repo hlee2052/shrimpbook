@@ -19,7 +19,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 
-public class SignupFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
+public class SignUpFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
 
     private Button registerButton;
     private EditText usernameInput;

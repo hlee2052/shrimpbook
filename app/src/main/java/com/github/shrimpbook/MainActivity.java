@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
         boolean haveConnectedMobile = false;
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-        for (NetworkInfo ni : netInfo) {
-            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-                if (ni.isConnected())
+        NetworkInfo[] networkInfos = cm.getAllNetworkInfo();
+        for (NetworkInfo network : networkInfos) {
+            if (network.getTypeName().equalsIgnoreCase("WIFI"))
+                if (network.isConnected())
                     haveConnectedWifi = true;
-            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-                if (ni.isConnected())
+            if (network.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (network.isConnected())
                     haveConnectedMobile = true;
         }
         return haveConnectedWifi || haveConnectedMobile;

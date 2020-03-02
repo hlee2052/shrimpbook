@@ -182,7 +182,6 @@ public class ListAdapter extends BaseAdapter {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
                 String objectIdToDelete = viewItems.get(position).getViewObjectId();
                 ParseQuery<ParseObject> query = ParseQuery.getQuery(Utility.DB_ENTRIES);
 
