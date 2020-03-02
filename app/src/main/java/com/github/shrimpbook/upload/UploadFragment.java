@@ -45,9 +45,7 @@ import java.util.List;
 public class UploadFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private byte[] photoByteArray;
-
     private TextView photoDirectory;
-
     private String typeResult;
     private String soilResult;
     private String tankSizeResult;

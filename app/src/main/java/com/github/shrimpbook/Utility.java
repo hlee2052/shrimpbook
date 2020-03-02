@@ -16,7 +16,6 @@ import java.util.List;
 
 
 public class Utility extends Fragment {
-
     public static final String ACCOUNT_FRAGMENT = "accountFragment";
     public static final String FAVORITES_FRAGMENT = "favoritesFragment";
     public static final String BEGIN_BY_UPLOAD = "You haven't uploaded any items. Begin by uploading from Upload Screen";

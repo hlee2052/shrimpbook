@@ -54,7 +54,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
         logOutButton = getView().findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(this);

@@ -19,6 +19,5 @@ tools:context="com.github.shrimpbook.MainActivity">
     android:layout_alignParentBottom="true"
     app:menu="@menu/bottom_navigation"
     android:background="?android:attr/windowBackground"/>
-
 </RelativeLayout>
 

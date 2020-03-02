@@ -37,14 +37,6 @@
 
         </RelativeLayout>
 
-        <!-- Type spinner-->
-
-        <!--Tank size spinner-->
-
-        <!--Soil type spinner -->
-
-        <!--pH input-->
-
         <TextView
             android:id="@+id/explanationCompatibility"
             android:layout_width="wrap_content"
@@ -98,7 +90,6 @@
             android:ems="10"
             android:inputType="numberDecimal" />
 
-
         <!--KH input-->
         <TextView
             android:id="@+id/KH_Text"
@@ -143,7 +134,6 @@
             android:ems="10"
             android:inputType="numberDecimal" />
 
-
         <!--TDSinput-->
         <TextView
             android:id="@+id/TDS_Text"
@@ -167,7 +157,6 @@
             android:inputType="numberDecimal" />
 
         <!--Picture upload button-->
-
         <Button
             android:id="@+id/checkCompatibility_submit"
             android:layout_width="wrap_content"

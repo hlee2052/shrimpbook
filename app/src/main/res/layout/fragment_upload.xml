@@ -15,11 +15,11 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="81dp"
                 android:background="@android:color/holo_blue_bright"
-                app:srcCompat="?android:attr/selectableItemBackground"
-                android:id="@+id/imageView" />
+                app:srcCompat="?android:attr/selectableItemBackground" />
 
             <TextView
                 android:id="@+id/UploadTitle"
@@ -92,9 +92,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/rounded_corner_green"
-
             android:layout_marginTop="30dp"
+
+            android:background="@drawable/rounded_corner_green"
             android:text="Soil Type"
             android:textSize="25dp"
             android:textStyle="" />
@@ -133,9 +133,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/rounded_corner_green"
-
             android:layout_marginTop="30dp"
+
+            android:background="@drawable/rounded_corner_green"
             android:text="GH (General Hardness)"
             android:textSize="25dp"
             android:textStyle="" />
@@ -193,7 +193,6 @@
             android:layout_marginRight="60dp"
             android:ems="10"
             android:inputType="numberDecimal" />
-
 
         <!--TDSinput-->
         <TextView

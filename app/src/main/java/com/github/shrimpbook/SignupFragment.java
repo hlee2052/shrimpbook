@@ -35,7 +35,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
 
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.submitRegisterButton) {
             ParseUser user = new ParseUser();
             String password = passwordInput.getText().toString();
@@ -60,7 +59,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
 
             user.setUsername(username);
             user.setPassword(password);
-
             user.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {

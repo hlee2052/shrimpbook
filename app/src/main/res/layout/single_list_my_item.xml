@@ -21,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <!--shrimp type-->
     <TextView
         android:id="@+id/shrimpTypeTXT"
@@ -56,8 +55,6 @@
         app:layout_constraintStart_toEndOf="@+id/shrimpTypeTXT"
         app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
 
-
-
     <!--soil type-->
     <TextView
         android:id="@+id/soilTypeTXT"
@@ -75,7 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shrimpTypeTXT" />
 
-
     <TextView
         android:id="@+id/soilTypeHome"
         android:layout_width="wrap_content"
@@ -91,8 +87,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/soilTypeTXT"
         app:layout_constraintTop_toBottomOf="@+id/shrimpTypeHome" />
-
-
 
     <!--aquarium size-->
     <TextView
@@ -112,7 +106,6 @@
         app:layout_constraintStart_toEndOf="@+id/shrimpTypeHome"
         app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
 
-
     <TextView
         android:id="@+id/tankSizeHome"
         android:layout_width="wrap_content"
@@ -127,7 +120,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/tamlSizeTXT"
         app:layout_constraintTop_toBottomOf="@+id/singleItemImage" />
-
 
     <!--pH type-->
     <TextView
@@ -145,7 +137,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/KHHome"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeHome" />
-
 
     <TextView
         android:id="@+id/pHHome"
@@ -179,7 +170,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soilTypeTXT" />
-
 
     <TextView
         android:id="@+id/GHHome"
@@ -319,6 +309,4 @@
         android:text="TDSVal"
         app:layout_constraintStart_toEndOf="@+id/TDSTxt"
         app:layout_constraintTop_toBottomOf="@+id/KHTXT" />
-
-
 </android.support.constraint.ConstraintLayout>

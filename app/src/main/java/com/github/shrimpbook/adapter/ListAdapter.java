@@ -39,7 +39,6 @@ public class ListAdapter extends BaseAdapter {
     private Context context;
     private List<ViewItem> viewItems;
     private String viewTYpe;
-
     private boolean isAccount;
     private boolean isHome;
     private boolean isFavorites;
@@ -80,7 +79,6 @@ public class ListAdapter extends BaseAdapter {
         return i;
     }
 
-
     // Tutorial from : http://www.sanktips.com/2017/10/12/android-custom-listview-with-image-and-text-example/
     @NonNull
     @Override
@@ -91,7 +89,6 @@ public class ListAdapter extends BaseAdapter {
 
         // for reuse old view
         if (convertView == null) {
-
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.single_list_my_item, parent, false);
@@ -181,7 +178,6 @@ public class ListAdapter extends BaseAdapter {
                 }
             }
         });
-
 
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override

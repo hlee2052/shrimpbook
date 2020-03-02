@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
         if (haveNetworkConnection()) {
             listItems = new ArrayList<>();

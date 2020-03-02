@@ -21,7 +21,7 @@ import com.github.shrimpbook.Utility;
 
 public class UploadFragmentEmpty extends Fragment implements View.OnClickListener {
 
-    Button button;
+    private Button button;
 
     @Nullable
     @Override
