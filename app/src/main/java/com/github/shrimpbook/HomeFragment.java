@@ -33,7 +33,6 @@ public class HomeFragment extends Fragment {
     private ListAdapter lAdapter;
     private TextView noInternetView;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,7 +48,6 @@ public class HomeFragment extends Fragment {
             lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // none
                 }
             });
 
