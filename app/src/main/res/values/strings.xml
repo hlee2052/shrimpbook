@@ -5,4 +5,53 @@
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">SOME ID</string>
     <string name="back4app_client_key">SOME KEY</string>
+    
+    <!-- general -->
+    <string name="welcome">Welcome!</string>
+    <string name="no_internet_warn">You need internet connection for the app the work!
+        Try to tap another section after you have internet connection!</string>
+    <string name="problem_with_home">Problem with home page when start</string>
+
+
+    <!-- ListAdapter - Favorite -->
+    <string name="favorite_removed">Removed from Favorite</string>
+    <string name="favorite_added">Added to your favorite list</string>
+    <string name="favorite_add_failed">Failed to add to the favorite list</string>
+
+    <string name="delete_item">The item has been deleted</string>
+
+    <string name="compatible">Compatible</string>
+    <string name="not_compatible">Not compatible</string>
+    <string name="remove">Remove</string>
+    <string name="pH_too_low">pH too low</string>
+    <string name="pH_too_high">pH too high</string>
+    <string name="gH_too_low">gH too low</string>
+    <string name="gH_too_high">gH too high</string>
+    <string name="kH_too_low">KH too low</string>
+    <string name="kH_too_high">KH too high</string>
+    <string name="tds_too_low">TDS too low</string>
+    <string name="tds_too_high">TDS too high</string>
+    <string name="temp_too_low">Temp too low</string>
+    <string name="temp_too_high">Temp too high</string>
+
+    <string name="compat_check_all_fields">Check that all fields are entered correctly </string>
+    <string name="compat_res_reset_input">Reset Input!</string>
+
+    <string name="success_log_out">Successfully logged out</string>
+    <string name="log_in_to_fav">Please log in to see your favorite bookmarks!</string>
+
+    <string name="begin_by_upload">You haven\'t uploaded any items. Begin by uploading from Upload Screen</string>
+    <string name="begin_by_add_fav_">You don\'t have any favorite items, Begin by add them from Home screen</string>
+
+    <!-- password-->
+    <string name="unEqual_password">You don\'t have any favorite items, Begin by add them from Home screen</string>
+    <string name="password_too_short">You don\'t have any favorite items, Begin by add them from Home screen</string>
+    <string name="password_illegal">You don\'t have any favorite items, Begin by add them from Home screen</string>
+
+    <!-- login -->
+    <string name="login_fail_check_input">Failed to log in, make sure to check your input!</string>
+
+    <!-- upload -->
+    <string name="load_success">Load success!</string>
+    <string name="upload_fail">Failed to upload!</string>
 </resources>

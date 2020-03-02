@@ -18,9 +18,6 @@ import java.util.List;
 public class Utility extends Fragment {
     public static final String ACCOUNT_FRAGMENT = "accountFragment";
     public static final String FAVORITES_FRAGMENT = "favoritesFragment";
-    public static final String BEGIN_BY_UPLOAD = "You haven't uploaded any items. Begin by uploading from Upload Screen";
-    public static final String BEGIN_BY_ADD_FAV = "You don't have any favorite items, Begin by add them from Home screen";
-    public static final String LOG_IN_TO_FAV = " Please log in to see your favorite bookmarks!";
 
     public static final int PNG_IMAGE_QUALITY = 0;
     public static final String[] SHRIMP_TYPES = new String[]{"Neocaridina", "Bee", "Tiger", "Amano", "Cardinal"};
@@ -36,6 +33,28 @@ public class Utility extends Fragment {
     public static final int TIGER_IMAGE = R.drawable.tiger;
     public static final int CARDINAL_IMAGE = R.drawable.cardinal;
     public static final int NEOCARIDINA_IMAGE = R.drawable.neocaridina;
+
+    // database
+    public static final String DB_VIEW_ID = "viewId";
+    public static final String DB_USER_ID = "userId";
+    public static final String DB_USER_NAME = "userName";
+    public static final String DB_FAVORITES = "favorites";
+    public static final String DB_ENTRIES = "entries";
+    public static final String DB_OBJECT_ID = "objectId";
+
+    // Parse Objects
+    public static final String PARSE_IMAGE = "image";
+    public static final String PARSE_SHRIMP_TYPE = "shrimpType";
+    public static final String PARSE_TANK_SIZE = "tankSize";
+    public static final String PARSE_SOIL_TYPE = "soilType";
+    public static final String PARSE_PH = "pH";
+    public static final String PARSE_GH = "GH";
+    public static final String PARSE_KH = "KH";
+    public static final String PARSE_TEMP = "temp";
+    public static final String PARSE_TDS = "TDS";
+
+
+
 
 
     public static int getShrimpImageByName(String name) {

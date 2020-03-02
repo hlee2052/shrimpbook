@@ -30,6 +30,8 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
     private EditText tdsText;
     private Button submitButton;
 
+    public static final String MAP_RESULT_KEY = "resultKey";
+
     Bundle bundle = new Bundle();
     Fragment fragment = new CompatibilityFragmentResult();
 
@@ -62,12 +64,12 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
         if (view.getId() == R.id.checkCompatibility_submit) {
             if (!validateInput()) {
                 Toast.makeText(getActivity(),
-                        "Check that all fields are entered correctly", Toast.LENGTH_SHORT).show();
+                        R.string.compat_check_all_fields, Toast.LENGTH_SHORT).show();
                 return;
             }
 
             HashMap<String, List<String>> compatibilityResult = analyzeCompatibility();
-            bundle.putSerializable("resultKey", compatibilityResult);
+            bundle.putSerializable(MAP_RESULT_KEY, compatibilityResult);
             fragment.setArguments(bundle);
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(fragment, fragmentManager);
@@ -82,7 +84,7 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
         double TDS = Double.parseDouble(tdsText.getText().toString());
         double temp = Double.parseDouble(tempText.getText().toString());
 
-        HashMap <String, List<String>> compatiblityResult = new HashMap<>();
+        HashMap <String, List<String>> compatibilityResult = new HashMap<>();
 
         for (Shrimp shrimp : shrimpList) {
             List<String> failReasons = new ArrayList<>();
@@ -117,9 +119,9 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
             } else if (shrimp.getTEMP()[1] < temp) {
                 failReasons.add("temperature too high");
             }
-            compatiblityResult.put(shrimpName, failReasons);
+            compatibilityResult.put(shrimpName, failReasons);
         }
-        return compatiblityResult;
+        return compatibilityResult;
     }
 
     private boolean validateInput() {

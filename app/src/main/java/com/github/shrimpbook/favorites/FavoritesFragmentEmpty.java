@@ -1,6 +1,7 @@
 package com.github.shrimpbook.favorites;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -20,16 +21,16 @@ import com.github.shrimpbook.Utility;
 
 public class FavoritesFragmentEmpty extends Fragment implements View.OnClickListener {
 
-    Button button;
+    private Button button;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_favorites_empty, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         button = (Button) getView().findViewById(R.id.uploadLogInFav);
         button.setOnClickListener(this);
     }
@@ -41,7 +42,7 @@ public class FavoritesFragmentEmpty extends Fragment implements View.OnClickList
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
 
             BottomNavigationView bottomNavigationView;
-            bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
+            bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.nav_login);
         }
     }

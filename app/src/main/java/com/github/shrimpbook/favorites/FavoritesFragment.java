@@ -40,7 +40,7 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
 
@@ -49,7 +49,7 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
         // log Out
         if (view.getId() == R.id.testButton) {
             ParseUser.logOut();
-            Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.success_log_out, Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
         }
@@ -73,8 +73,8 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
         });
 
         final List<String> viewIdList = new ArrayList<>();
-        ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("favorites");
-        userQuery.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
+        ParseQuery<ParseObject> userQuery = ParseQuery.getQuery(Utility.DB_FAVORITES);
+        userQuery.whereEqualTo(Utility.DB_USER_ID, ParseUser.getCurrentUser().getObjectId());
 
         try {
             userQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -82,10 +82,10 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
                 public void done(List<ParseObject> objects, ParseException e) {
                     if (e == null) {
                         for (ParseObject each : objects) {
-                            viewIdList.add(each.getString("viewId"));
+                            viewIdList.add(each.getString(Utility.DB_VIEW_ID));
                         }
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
-                        query.whereContainedIn("objectId", viewIdList);
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery(Utility.DB_ENTRIES);
+                        query.whereContainedIn(Utility.DB_OBJECT_ID, viewIdList);
                         try {
                             query.findInBackground(new FindCallback<ParseObject>() {
                                 @Override
@@ -107,9 +107,9 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener 
                                         favoritesInfo.setVisibility(View.VISIBLE);
                                         boolean isAnonymous = ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser());
                                         if (ParseUser.getCurrentUser().getUsername() != null && !isAnonymous) {
-                                            favoritesInfo.setText(Utility.BEGIN_BY_ADD_FAV);
+                                            favoritesInfo.setText(R.string.begin_by_add_fav_);
                                         } else {
-                                            favoritesInfo.setText(Utility.LOG_IN_TO_FAV);
+                                            favoritesInfo.setText(R.string.log_in_to_fav);
                                         }
                                     } else {
                                         try {

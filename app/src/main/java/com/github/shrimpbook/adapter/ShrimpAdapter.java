@@ -1,6 +1,7 @@
 package com.github.shrimpbook.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -87,15 +88,14 @@ public class ShrimpAdapter extends BaseAdapter {
         }
 
         shrimpName = rowView.findViewById(R.id.CompatibilityShrimpName);
-        shrimpName.setText(name.get(position)+ " shrimp");
-
+        shrimpName.setText(String.format("%s shrimp", name.get(position)));
         result = rowView.findViewById(R.id.CompatibilityResult);
 
         if (reasonForCurrentShrimp.size() == 0) {
-            result.setText("Compatible");
+            result.setText(R.string.compatible);
             result.setTextColor(Color.GREEN);
         } else {
-            result.setText("Not Compatible");
+            result.setText(R.string.not_compatible);
             result.setTextColor(Color.RED);
         }
 

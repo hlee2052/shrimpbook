@@ -123,7 +123,7 @@ public class ListAdapter extends BaseAdapter {
 
         if (isFavorites) {
             favButton.setVisibility(View.VISIBLE);
-            favButton.setText("Remove");
+            favButton.setText(R.string.remove);
         }
 
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -137,8 +137,8 @@ public class ListAdapter extends BaseAdapter {
             public void onClick(View view) {
                 if (isFavorites) {
                     String favoriteEntryToDelete = viewItems.get(position).getViewObjectId();
-                    ParseQuery<ParseObject> queryTest = ParseQuery.getQuery("favorites");
-                    queryTest.whereEqualTo("viewId", favoriteEntryToDelete).whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
+                    ParseQuery<ParseObject> queryTest = ParseQuery.getQuery(Utility.DB_FAVORITES);
+                    queryTest.whereEqualTo(Utility.DB_VIEW_ID, favoriteEntryToDelete).whereEqualTo(Utility.DB_USER_ID, ParseUser.getCurrentUser().getObjectId());
 
                     queryTest.findInBackground(new FindCallback<ParseObject>() {
                         @Override
@@ -153,25 +153,25 @@ public class ListAdapter extends BaseAdapter {
                             }
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new FavoritesFragment(), fragmentManager);
-                            Toast.makeText(context, "Removed from Favorite", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.favorite_removed, Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    ParseObject parseObject = new ParseObject("favorites");
+                    ParseObject parseObject = new ParseObject(Utility.DB_FAVORITES);
 
                     String currentUserObjectId = ParseUser.getCurrentUser().getObjectId();
-                    parseObject.put("userId", currentUserObjectId);
+                    parseObject.put(Utility.DB_USER_ID, currentUserObjectId);
 
                     String viewItemId = viewItems.get(position).getViewObjectId();
-                    parseObject.put("viewId", viewItemId);
+                    parseObject.put(Utility.DB_VIEW_ID, viewItemId);
 
                     parseObject.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Toast.makeText(context, "Added to your favorite list", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.favorite_added, Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.favorite_add_failed, Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -184,7 +184,7 @@ public class ListAdapter extends BaseAdapter {
             public void onClick(final View view) {
 
                 String objectIdToDelete = viewItems.get(position).getViewObjectId();
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery(Utility.DB_ENTRIES);
 
                 query.getInBackground(objectIdToDelete, new GetCallback<ParseObject>() {
                     @Override
@@ -194,7 +194,7 @@ public class ListAdapter extends BaseAdapter {
                             object.saveInBackground();
                             FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                             Utility.moveToAnotherFragment(new AccountFragment(), fragmentManager);
-                            Toast.makeText(context, "The item has been deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.delete_item, Toast.LENGTH_SHORT).show();
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }

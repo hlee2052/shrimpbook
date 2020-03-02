@@ -26,10 +26,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
     private EditText passwordInput;
     private EditText passwordConfirmInput;
 
-    private final String unEqualPasswordText = "Please check two passwords are matched";
-    private final String passwordTooShortText = "Password must be at least 6 characters long";
-    private final String illegalInput = "Id must be at least 6 characters long!";
-
     private static final int MIN_PASSWORD_LENGTH = 6;
     private static final int MIN_USERNAME_LENGTH = 6;
 
@@ -41,19 +37,19 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
             String passwordConfirm = passwordConfirmInput.getText().toString();
 
             if (!password.equals(passwordConfirm)) {
-                Toast.makeText(getActivity(), unEqualPasswordText, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.unEqual_password, Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (password.length() < MIN_PASSWORD_LENGTH) {
-                Toast.makeText(getActivity(), passwordTooShortText, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.password_too_short, Toast.LENGTH_SHORT).show();
                 return;
             }
 
             String username = usernameInput.getText().toString();
 
             if (username.equals("") || username.length() < MIN_USERNAME_LENGTH) {
-                Toast.makeText(getActivity(), illegalInput, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.password_illegal, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -67,7 +63,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener, Vi
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     } else {
                         Log.i("Sign Up", "Success");
-                        Toast.makeText(getActivity(), "Welcome!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.welcome, Toast.LENGTH_SHORT).show();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
                     }

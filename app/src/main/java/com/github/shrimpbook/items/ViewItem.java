@@ -1,5 +1,6 @@
 package com.github.shrimpbook.items;
 
+import com.github.shrimpbook.Utility;
 import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -22,16 +23,16 @@ public class ViewItem {
     private String viewObjectId;
 
     public ViewItem (ParseObject object) {
-        this.file = (ParseFile) object.get("image");
-        this.shrimpType = (String) object.get("shrimpType");
-        this.tankSize = (String) object.get("tankSize");
-        this.soilType = (String) object.get("soilType");
-        this.pH = (String) object.get("pH");
-        this.GH = (String) object.get("GH");
-        this.KH = (String) object.get("KH");
+        this.file = (ParseFile) object.get(Utility.PARSE_IMAGE);
+        this.shrimpType = (String) object.get(Utility.PARSE_SHRIMP_TYPE);
+        this.tankSize = (String) object.get(Utility.PARSE_TANK_SIZE);
+        this.soilType = (String) object.get(Utility.PARSE_SOIL_TYPE);
+        this.pH = (String) object.get(Utility.PARSE_PH);
+        this.GH = (String) object.get(Utility.PARSE_GH);
+        this.KH = (String) object.get(Utility.PARSE_KH);
         this.viewObjectId = (String) object.getObjectId();
-        this.temp = (String) object.get("temp");
-        this.TDS = (String) object.get("TDS");
+        this.temp = (String) object.get(Utility.PARSE_TEMP);
+        this.TDS = (String) object.get(Utility.PARSE_TDS);
     }
 
     public String getViewObjectId () {

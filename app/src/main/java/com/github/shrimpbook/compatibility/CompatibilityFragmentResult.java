@@ -1,6 +1,7 @@
 package com.github.shrimpbook.compatibility;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,18 +36,18 @@ public class CompatibilityFragmentResult extends Fragment implements  View.OnCli
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_compatibility_result, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
 
         resetButton = getView().findViewById(R.id.compatibilityReset);
         resetButton.setOnClickListener(this);
 
-        Map<String, List<String>>  res = (Map<String, List<String>>) bundle.getSerializable("resultKey");
+        Map<String, List<String>>  res = (Map<String, List<String>>) bundle.getSerializable(CompatibilityFragment.MAP_RESULT_KEY);
 
         // convert to list for using list adapter;
         List<String> name = new ArrayList<>();
@@ -66,7 +67,7 @@ public class CompatibilityFragmentResult extends Fragment implements  View.OnCli
     public void onClick(View view) {
         if (view.getId() == R.id.compatibilityReset) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            Toast.makeText(getActivity(), "Reset input!" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.compat_res_reset_input , Toast.LENGTH_SHORT).show();
             Utility.moveToAnotherFragment(new CompatibilityFragment(), fragmentManager);
         }
     }

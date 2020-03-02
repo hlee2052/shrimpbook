@@ -46,7 +46,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         // log Out
         if (view.getId() == R.id.logOutButton) {
             ParseUser.logOut();
-            Toast.makeText(getActivity(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.success_log_out, Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             Utility.moveToAnotherFragment(new LoginFragment(), fragmentManager);
         }
@@ -69,7 +69,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(Utility.DB_ENTRIES);
         query.whereEqualTo("userID", ParseUser.getCurrentUser().getObjectId());
 
         try {
@@ -91,7 +91,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
                     if (listItems.size() == 0) {
                         accountInfo.setVisibility(View.VISIBLE);
-                        accountInfo.setText(Utility.BEGIN_BY_UPLOAD);
+                        accountInfo.setText(R.string.begin_by_upload);
                     } else {
                         try {
                             accountInfo.setVisibility(View.GONE);

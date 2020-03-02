@@ -64,6 +64,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
     private Button submitButton;
     private Button pictureUploadButton;
 
+    public static final String IMAGE_FILE_NAME = "image.png";
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         return super.onContextItemSelected(item);
@@ -109,7 +111,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
         Spinner spinnerSoil = (Spinner) view.findViewById(R.id.soil_spinner);
         spinnerSoilList.add("Gravel(Inert)");
         spinnerSoilList.add("Aquasoil(acidic)");
-        spinnerSoilList.add("Limestone (basic)");
+        spinnerSoilList.add("Limestone(basic)");
         spinnerSoilList.add("Other");
 
         final ArrayAdapter<String> soilTypeAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, spinnerSoilList);
@@ -151,32 +153,32 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
             String tempResult = tempText.getText().toString();
             String TDSResult = TDSText.getText().toString();
 
-            ParseObject object = new ParseObject("entries");
-            object.put("shrimpType", typeResult);
-            object.put("tankSize", tankSizeResult);
-            object.put("soilType", soilResult);
-            object.put("pH", pHResult);
-            object.put("GH", GHResult);
-            object.put("KH", KHResult);
-            object.put("temp", tempResult);
-            object.put("TDS", TDSResult);
-            object.put("userID", userObjectId);
-            object.put("useName", username);
+            ParseObject object = new ParseObject(Utility.DB_ENTRIES);
+            object.put(Utility.PARSE_SHRIMP_TYPE, typeResult);
+            object.put(Utility.PARSE_TANK_SIZE, tankSizeResult);
+            object.put(Utility.PARSE_SOIL_TYPE, soilResult);
+            object.put(Utility.PARSE_PH, pHResult);
+            object.put(Utility.PARSE_GH, GHResult);
+            object.put(Utility.PARSE_KH, KHResult);
+            object.put(Utility.PARSE_TEMP, tempResult);
+            object.put(Utility.PARSE_TDS, TDSResult);
+            object.put(Utility.DB_USER_ID, userObjectId);
+            object.put(Utility.DB_USER_NAME, username);
 
             if (photoByteArray != null && photoByteArray.length > 0) {
-                ParseFile file = new ParseFile("image.png", photoByteArray);
-                object.put("image", file);
+                ParseFile file = new ParseFile(IMAGE_FILE_NAME, photoByteArray);
+                object.put(Utility.PARSE_IMAGE, file);
             }
 
             object.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(getActivity(), "Load Success!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), R.string.load_success, Toast.LENGTH_LONG).show();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         Utility.moveToAnotherFragment(new HomeFragment(), fragmentManager);
                     } else {
-                        Toast.makeText(getActivity(), "Failed to Upload", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.upload_fail, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -238,9 +240,7 @@ public class UploadFragment extends Fragment implements View.OnClickListener, Ad
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        // empty
     }
-
 
     private static Bitmap scaleDown(Bitmap bmp, float maxImageSize) {
         float ratio = Math.min(

@@ -32,7 +32,6 @@ public class HomeFragment extends Fragment {
     private ListView lView;
     private ListAdapter lAdapter;
     private TextView noInternetView;
-    private static final String noInternet = "You need internet connection for the app the work! Try to tap another section after you have internet connection!";
 
 
     @Nullable
@@ -55,7 +54,7 @@ public class HomeFragment extends Fragment {
             });
 
             try {
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("entries");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery(Utility.DB_ENTRIES);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -69,13 +68,13 @@ public class HomeFragment extends Fragment {
                     }
                 });
             } catch (Exception e) {
-                Toast.makeText(getActivity(), "Problem with home page when start", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.problem_with_home, Toast.LENGTH_SHORT).show();
                 Log.i("exception at home", "issue with home screen");
             }
         } else {
             noInternetView = getView().findViewById(R.id.homeNoInternet);
             noInternetView.setVisibility(View.VISIBLE);
-            noInternetView.setText(noInternet);
+            noInternetView.setText(R.string.no_internet_warn);
         }
     }
 
