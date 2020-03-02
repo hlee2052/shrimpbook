@@ -33,9 +33,6 @@ public class CompatibilityFragment extends Fragment implements View.OnClickListe
     Bundle bundle = new Bundle();
     Fragment fragment = new CompatibilityFragmentResult();
 
-
-    //private ArrayList<String> result = new ArrayList<>();
-
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         return super.onContextItemSelected(item);

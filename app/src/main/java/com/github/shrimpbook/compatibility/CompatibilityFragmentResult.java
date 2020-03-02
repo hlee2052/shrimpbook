@@ -21,16 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Lee on 11/23/2019.
- */
 
 public class CompatibilityFragmentResult extends Fragment implements  View.OnClickListener {
 
-    ListView listView;
-    ListAdapter listAdapter;
-
-    Button resetButton;
+    private ListView listView;
+    private ListAdapter listAdapter;
+    private Button resetButton;
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
