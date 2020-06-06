@@ -2,15 +2,7 @@
 
 ### Google Play Store - https://play.google.com/store/apps/details?id=com.github.shrimpbook
 
-### Internet access required to run the application - If not, app will provide warning
-
-### To run this app locally, user must provide: 
-1. Parse Server URL, 
-2. application ID, 
-3. client Key
-### which can be inserted in Parse.initialize() method inside MainActivity.
-### To run it with your own database, I recommend back4app.com to sign up a free Parse hosting.
-
+![gifmovie](https://github.com/hlee2052/shrimpbook/blob/master/screenshot/shrimp-demo.gif)
 
 ## About
 An Android project that allows users to share shrimp photo and tank parameters with others
@@ -19,6 +11,15 @@ An Android project that allows users to share shrimp photo and tank parameters w
 - User can view other people's system
 - Recommends shrimp based on user's input. 
 - Used Parse SDK to manage database connection
+
+### Internet access required to run the application - If not, app will provide warning
+
+### To run this app locally, user must provide: 
+1. Parse Server URL, 
+2. application ID, 
+3. client Key
+### which can be inserted in Parse.initialize() method inside MainActivity.
+### To run it with your own database, I recommend back4app.com to sign up a free Parse hosting.
 
 ### Note:
 - The shrimp picture used in the App are from my tank (eg, login page)
